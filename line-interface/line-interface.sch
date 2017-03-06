@@ -223,13 +223,13 @@ F 3 "" H 3850 4800 60  0000 C CNN
 	1    3850 4800
 	1    0    0    -1  
 $EndComp
-Text Label 3900 3700 2    60   ~ 0
+Text Label 3300 3700 2    60   ~ 0
 SCK
 Text Label 3550 4500 2    60   ~ 0
 RESET
 Text Label 3550 4400 2    60   ~ 0
 EXCITATION
-Text Label 3900 3800 2    60   ~ 0
+Text Label 3300 3800 2    60   ~ 0
 MISO
 Text Label 6650 3500 2    60   ~ 0
 RS485A
@@ -255,9 +255,9 @@ Wire Wire Line
 Wire Wire Line
 	3000 4400 3550 4400
 Wire Wire Line
-	3000 3800 3900 3800
+	3000 3800 3300 3800
 Wire Wire Line
-	3000 4000 3900 4000
+	3000 4000 3500 4000
 Wire Wire Line
 	6150 3500 6650 3500
 Wire Wire Line
@@ -274,9 +274,7 @@ Wire Wire Line
 Wire Wire Line
 	4650 3300 3000 3300
 Wire Wire Line
-	3900 3700 3000 3700
-Wire Wire Line
-	3000 3600 3900 3600
+	3300 3700 3000 3700
 $Comp
 L CONN_02X03 P?
 U 1 1 58BAC856
@@ -383,7 +381,7 @@ F 3 "" H 5100 1500 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4700 1350 5100 1350
+	4700 1350 5550 1350
 Connection ~ 4300 2150
 Wire Wire Line
 	5100 2150 5100 1650
@@ -425,7 +423,7 @@ Connection ~ 2450 2150
 Wire Wire Line
 	6150 3700 6650 3700
 Wire Wire Line
-	1200 2150 5100 2150
+	1200 2150 5550 2150
 Wire Wire Line
 	3900 1650 3900 2150
 $Comp
@@ -443,8 +441,8 @@ F 6 "?" H 1950 3900 60  0001 C CNN "Distributor"
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3000 3900 3900 3900
-Text Label 3900 3900 2    60   ~ 0
+	3000 3900 3300 3900
+Text Label 3300 3900 2    60   ~ 0
 MOSI
 $Comp
 L CONN_01X06 J?
@@ -704,4 +702,119 @@ Connection ~ 2100 2150
 Wire Wire Line
 	2100 1600 2100 1350
 Connection ~ 2100 1350
+$Comp
+L LED_ALT D?
+U 1 1 58BD3E84
+P 4050 3850
+F 0 "D?" V 4088 3732 50  0000 R CNN
+F 1 "GREEN" V 3997 3732 50  0000 R CNN
+F 2 "LEDs:LED_0603" H -100 200 50  0001 C CNN
+F 3 "" H -100 200 50  0001 C CNN
+F 4 "?" H 4050 3850 60  0001 C CNN "PartNo"
+F 5 "?" H 4050 3850 60  0001 C CNN "Manufacturer"
+F 6 "?" H 4050 3850 60  0001 C CNN "Distributor"
+	1    4050 3850
+	0    -1   -1   0   
+$EndComp
+$Comp
+L LED_ALT D?
+U 1 1 58BD44C6
+P 4550 3850
+F 0 "D?" V 4588 3732 50  0000 R CNN
+F 1 "RED" V 4497 3732 50  0000 R CNN
+F 2 "LEDs:LED_0603" H 400 200 50  0001 C CNN
+F 3 "" H 400 200 50  0001 C CNN
+F 4 "?" H 4550 3850 60  0001 C CNN "PartNo"
+F 5 "?" H 4550 3850 60  0001 C CNN "Manufacturer"
+F 6 "?" H 4550 3850 60  0001 C CNN "Distributor"
+	1    4550 3850
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4550 3600 4550 3700
+Wire Wire Line
+	3500 4000 3500 3700
+$Comp
+L GND #PWR?
+U 1 1 58BD465C
+P 4050 4000
+F 0 "#PWR?" H 4050 3750 60  0001 C CNN
+F 1 "GND" H 4050 3850 60  0000 C CNN
+F 2 "" H 4050 4000 60  0000 C CNN
+F 3 "" H 4050 4000 60  0000 C CNN
+	1    4050 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 58BD4709
+P 4550 4000
+F 0 "#PWR?" H 4550 3750 60  0001 C CNN
+F 1 "GND" H 4550 3850 60  0000 C CNN
+F 2 "" H 4550 4000 60  0000 C CNN
+F 3 "" H 4550 4000 60  0000 C CNN
+	1    4550 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED_ALT D?
+U 1 1 58BD48E7
+P 5550 1850
+F 0 "D?" V 5588 1732 50  0000 R CNN
+F 1 "GREEN" V 5497 1732 50  0000 R CNN
+F 2 "LEDs:LED_0603" H 1400 -1800 50  0001 C CNN
+F 3 "" H 1400 -1800 50  0001 C CNN
+F 4 "?" H 5550 1850 60  0001 C CNN "PartNo"
+F 5 "?" H 5550 1850 60  0001 C CNN "Manufacturer"
+F 6 "?" H 5550 1850 60  0001 C CNN "Distributor"
+	1    5550 1850
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	5550 2150 5550 2000
+Connection ~ 5100 2150
+$Comp
+L R R?
+U 1 1 58BD4C42
+P 5550 1550
+F 0 "R?" V 5630 1550 50  0000 C CNN
+F 1 "330" V 5557 1551 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 5480 1550 30  0001 C CNN
+F 3 "" H 5550 1550 30  0000 C CNN
+	1    5550 1550
+	-1   0    0    -1  
+$EndComp
+Connection ~ 5100 1350
+Wire Wire Line
+	5550 1350 5550 1400
+$Comp
+L R R?
+U 1 1 58BD52D2
+P 4300 3600
+F 0 "R?" V 4380 3600 50  0000 C CNN
+F 1 "10k" V 4307 3601 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 4230 3600 30  0001 C CNN
+F 3 "" H 4300 3600 30  0000 C CNN
+	1    4300 3600
+	0    1    1    0   
+$EndComp
+$Comp
+L R R?
+U 1 1 58BD5396
+P 3800 3700
+F 0 "R?" V 3880 3700 50  0000 C CNN
+F 1 "10k" V 3807 3701 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 3730 3700 30  0001 C CNN
+F 3 "" H 3800 3700 30  0000 C CNN
+	1    3800 3700
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3000 3600 4150 3600
+Wire Wire Line
+	4450 3600 4550 3600
+Wire Wire Line
+	3950 3700 4050 3700
+Wire Wire Line
+	3500 3700 3650 3700
 $EndSCHEMATC
