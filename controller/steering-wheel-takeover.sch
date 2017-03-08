@@ -736,11 +736,11 @@ Wire Wire Line
 	1950 2050 1850 2050
 Text HLabel 1850 2050 0    60   Input ~ 0
 TAKEOVER_PEDAL
-Text Notes 10850 4550 0    60   ~ 0
+Text Notes 11900 4650 0    60   ~ 0
 TODO: ŠVIESOS
-Text Notes 10850 5150 0    60   ~ 0
+Text Notes 11900 5100 0    60   ~ 0
 TODO: MIRGALKĖ
-Text Notes 10300 1450 0    60   ~ 0
+Text Notes 11800 1400 0    60   ~ 0
 TODO: RAKTELIS
 $Comp
 L CONN_01X02 J?
@@ -765,4 +765,6 @@ Connection ~ 9550 700
 Connection ~ 9550 550 
 Text HLabel 9550 850  0    60   Input ~ 0
 STEERING_COMMON
+Text Notes 11900 4100 0    60   ~ 0
+TODO: SĖDYNĖ
 $EndSCHEMATC
