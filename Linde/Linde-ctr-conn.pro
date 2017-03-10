@@ -1,6 +1,6 @@
-update=22/05/2015 07:44:53
+update=10/03/2017 13:19:04
 version=1
-last_client=kicad
+last_client=eeschema
 [general]
 version=1
 RootSch=
@@ -29,7 +29,7 @@ version=1
 NetIExt=net
 [eeschema]
 version=1
-LibDir=
+LibDir=C:/Users/ejs/Documents/KiCAD/libs
 [eeschema/libraries]
 LibName1=power
 LibName2=device
@@ -60,3 +60,5 @@ LibName26=opto
 LibName27=atmel
 LibName28=contrib
 LibName29=valves
+LibName30=conn_sbs_02x08
+LibName31=switches
