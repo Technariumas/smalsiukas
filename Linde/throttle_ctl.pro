@@ -1,6 +1,10 @@
-update=10/03/2017 13:28:58
+update=22/05/2015 07:44:53
 version=1
 last_client=kicad
+[general]
+version=1
+RootSch=
+BoardNm=
 [pcbnew]
 version=1
 LastNetListRead=
@@ -56,7 +60,3 @@ LibName26=opto
 LibName27=atmel
 LibName28=contrib
 LibName29=valves
-LibName30=C:/Users/ejs/Documents/KiCAD/libs/conn_sbs_02x08
-LibName31=switches
-[general]
-version=1
