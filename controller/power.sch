@@ -30,12 +30,11 @@ LIBS:contrib
 LIBS:valves
 LIBS:mic-parts
 LIBS:controller-cache
-LIBS:line-interface-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 5 6
+Sheet 4 10
 Title ""
 Date ""
 Rev ""
@@ -46,10 +45,10 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L CONN_01X02 J?
+L CONN_01X02 J22
 U 1 1 58C0B3B4
 P 900 1650
-F 0 "J?" H 819 1375 50  0000 C CNN
+F 0 "J22" H 819 1375 50  0000 C CNN
 F 1 "BATT" H 819 1466 50  0000 C CNN
 F 2 "" H -600 -1600 50  0001 C CNN
 F 3 "" H -600 -1600 50  0001 C CNN
@@ -65,10 +64,10 @@ VCC_HIGH
 Text HLabel 6700 2600 2    60   Input ~ 0
 GND
 $Comp
-L Fuse F?
+L Fuse F2
 U 1 1 58C0B526
 P 1250 1600
-F 0 "F?" V 1447 1600 50  0000 C CNN
+F 0 "F2" V 1447 1600 50  0000 C CNN
 F 1 "Fuse" V 1356 1600 50  0000 C CNN
 F 2 "" V -1770 -50 50  0001 C CNN
 F 3 "" H -1700 -50 50  0001 C CNN

@@ -30,12 +30,11 @@ LIBS:contrib
 LIBS:valves
 LIBS:mic-parts
 LIBS:controller-cache
-LIBS:line-interface-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 4 6
+Sheet 3 10
 Title "Digital soil moisture sensor"
 Date "Tue 17 Feb 2015"
 Rev ""
@@ -46,10 +45,10 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L SP3481EN U?
+L SP3481EN U3
 U 1 1 58C048AA
 P 6000 3600
-F 0 "U?" H 5700 3950 50  0000 L CNN
+F 0 "U3" H 5700 3950 50  0000 L CNN
 F 1 "SN65HVD72" H 6100 3950 50  0000 L CNN
 F 2 "Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm" H 6000 3600 50  0001 C CIN
 F 3 "" H 6000 3600 60  0000 C CNN
@@ -60,10 +59,10 @@ F 6 "2511930" H 6000 3600 60  0001 C CNN "Distributor"
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C?
+L C C20
 U 1 1 58C048AB
 P 4800 2700
-F 0 "C?" H 4850 2800 50  0000 L CNN
+F 0 "C20" H 4850 2800 50  0000 L CNN
 F 1 "1u" H 4850 2600 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603" H 4838 2550 30  0001 C CNN
 F 3 "" H 4800 2700 60  0000 C CNN
@@ -124,10 +123,10 @@ Wire Wire Line
 	4800 4150 7200 4150
 Connection ~ 6000 4150
 $Comp
-L CONN_01X04 J?
+L CONN_01X04 J21
 U 1 1 58C08A57
 P 7400 3600
-F 0 "J?" H 7478 3641 50  0000 L CNN
+F 0 "J21" H 7478 3641 50  0000 L CNN
 F 1 "CONN_01X04" H 7478 3550 50  0000 L CNN
 F 2 "" H -400 250 50  0001 C CNN
 F 3 "" H -400 250 50  0001 C CNN
@@ -143,10 +142,10 @@ Wire Wire Line
 Text HLabel 7200 2900 2    60   Input ~ 0
 VCC_HIGH
 $Comp
-L Fuse F?
+L Fuse F1
 U 1 1 58C08BC1
 P 7200 3150
-F 0 "F?" H 7260 3196 50  0000 L CNN
+F 0 "F1" H 7260 3196 50  0000 L CNN
 F 1 "Fuse" H 7260 3105 50  0000 L CNN
 F 2 "" V -1620 0   50  0001 C CNN
 F 3 "" H -1550 0   50  0001 C CNN
