@@ -1,4 +1,4 @@
-update=Wed 08 Mar 2017 01:32:57 PM EET
+update=Tue 14 Mar 2017 02:12:07 PM EET
 version=1
 last_client=kicad
 [pcbnew]
@@ -59,3 +59,4 @@ LibName27=atmel
 LibName28=contrib
 LibName29=valves
 LibName30=/home/miceuz/kicad/libraries/mic-parts
+LibName31=/home/miceuz/Xaltura/smalsiukas/shield_arduino

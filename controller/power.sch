@@ -29,17 +29,18 @@ LIBS:atmel
 LIBS:contrib
 LIBS:valves
 LIBS:mic-parts
+LIBS:shield_arduino
 LIBS:controller-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 4 10
-Title ""
-Date ""
+Title "Digital soil moisture sensor"
+Date "Tue 17 Feb 2015"
 Rev ""
-Comp ""
-Comment1 ""
+Comp "Catnip electronics"
+Comment1 "by Albertas Mickėnas mic@wemakethings.net"
 Comment2 ""
 Comment3 ""
 Comment4 ""
@@ -47,35 +48,379 @@ $EndDescr
 $Comp
 L CONN_01X02 J22
 U 1 1 58C0B3B4
-P 900 1650
-F 0 "J22" H 819 1375 50  0000 C CNN
-F 1 "BATT" H 819 1466 50  0000 C CNN
-F 2 "" H -600 -1600 50  0001 C CNN
-F 3 "" H -600 -1600 50  0001 C CNN
-	1    900  1650
+P 2400 3500
+F 0 "J22" H 2319 3225 50  0000 C CNN
+F 1 "BATT" H 2319 3316 50  0000 C CNN
+F 2 "" H 900 250 50  0001 C CNN
+F 3 "" H 900 250 50  0001 C CNN
+	1    2400 3500
 	-1   0    0    1   
 $EndComp
-Text HLabel 6700 1900 2    60   Input ~ 0
+Text HLabel 7950 3450 2    60   Input ~ 0
 +5V
-Text HLabel 1400 1350 2    60   Input ~ 0
+Text HLabel 2900 3150 2    60   Input ~ 0
 VCC_HIGH
-Text HLabel 6700 2600 2    60   Input ~ 0
+Text HLabel 7950 4250 2    60   Input ~ 0
 GND
 $Comp
 L Fuse F2
 U 1 1 58C0B526
-P 1250 1600
-F 0 "F2" V 1447 1600 50  0000 C CNN
-F 1 "Fuse" V 1356 1600 50  0000 C CNN
-F 2 "" V -1770 -50 50  0001 C CNN
-F 3 "" H -1700 -50 50  0001 C CNN
-	1    1250 1600
+P 2750 3450
+F 0 "F2" V 2947 3450 50  0000 C CNN
+F 1 "Fuse" V 2856 3450 50  0000 C CNN
+F 2 "smalsiukas-footpints:Automotive-Fuse-Holder" V -270 1800 50  0001 C CNN
+F 3 "" H -200 1800 50  0001 C CNN
+F 4 "?" H 2750 3450 60  0001 C CNN "PartNo"
+F 5 "?" H 2750 3450 60  0001 C CNN "Manufacturer"
+F 6 "1586596" H 2750 3450 60  0001 C CNN "Distributor"
+	1    2750 3450
 	0    -1   -1   0   
 $EndComp
-Text HLabel 1100 1950 2    60   Input ~ 0
+Text HLabel 2600 3800 2    60   Input ~ 0
 GND
 Wire Wire Line
-	1100 1950 1100 1700
+	2600 3800 2600 3550
 Wire Wire Line
-	1400 1350 1400 1600
+	2900 3150 2900 3450
+$Comp
+L VCC #PWR010
+U 1 1 58C97562
+P 3850 3150
+F 0 "#PWR010" H 3850 3000 60  0001 C CNN
+F 1 "VCC" H 3850 3300 60  0000 C CNN
+F 2 "" H 3850 3150 60  0000 C CNN
+F 3 "" H 3850 3150 60  0000 C CNN
+	1    3850 3150
+	1    0    0    -1  
+$EndComp
+Connection ~ 6300 3450
+$Comp
+L C C38
+U 1 1 58C97572
+P 6300 3600
+F 0 "C38" H 6350 3700 50  0000 L CNN
+F 1 "1u" H 6350 3500 50  0000 L CNN
+F 2 "Capacitors_SMD:C_1210_HandSoldering" H 6338 3450 30  0001 C CNN
+F 3 "" H 6300 3600 60  0000 C CNN
+F 4 "?" H 6300 3600 60  0001 C CNN "PartNo"
+F 5 "?" H 6300 3600 60  0001 C CNN "Manufacturer"
+F 6 "2320928" H 6300 3600 60  0001 C CNN "Distributor"
+	1    6300 3600
+	-1   0    0    -1  
+$EndComp
+$Comp
+L C C39
+U 1 1 58C97574
+P 7500 3600
+F 0 "C39" H 7550 3700 50  0000 L CNN
+F 1 "1u" H 7550 3500 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 7538 3450 30  0001 C CNN
+F 3 "" H 7500 3600 60  0000 C CNN
+	1    7500 3600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7100 3450 7950 3450
+Connection ~ 6700 4250
+Wire Wire Line
+	7500 4250 7500 3750
+Wire Wire Line
+	7500 3450 7500 3300
+$Comp
+L Q_PMOS_GSD Q8
+U 1 1 58C97575
+P 4550 3550
+F 0 "Q8" V 4878 3550 50  0000 C CNN
+F 1 "NDT2955" V 4787 3550 50  0000 C CNN
+F 2 "TO_SOT_Packages_SMD:TO-252-2Lead" V 4950 3300 29  0000 C CNN
+F 3 "" H 6850 2800 60  0000 C CNN
+F 4 "IRFR5410TRPBF" H 4550 3550 60  0001 C CNN "PartNo"
+F 5 "INFINEON" H 4550 3550 60  0001 C CNN "Manufacturer"
+F 6 "2468040" H 4550 3550 60  0001 C CNN "Distributor"
+	1    4550 3550
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4750 3450 5150 3450
+Wire Wire Line
+	5450 3450 6300 3450
+Wire Wire Line
+	3850 3150 3850 3700
+Connection ~ 6300 4250
+Connection ~ 4550 4250
+Wire Wire Line
+	3850 4250 7950 4250
+Wire Wire Line
+	6300 3750 6300 4250
+Wire Wire Line
+	6700 3750 6700 4250
+$Comp
+L +5V #PWR011
+U 1 1 58C9757F
+P 7500 3300
+F 0 "#PWR011" H 1550 1950 50  0001 C CNN
+F 1 "+5V" H 7515 3473 50  0000 C CNN
+F 2 "" H 1550 2100 50  0001 C CNN
+F 3 "" H 1550 2100 50  0001 C CNN
+	1    7500 3300
+	1    0    0    -1  
+$EndComp
+$Comp
+L CP1 C37
+U 1 1 58C97580
+P 6000 3600
+F 0 "C37" H 6115 3646 50  0000 L CNN
+F 1 "470u" H 6115 3555 50  0000 L CNN
+F 2 "Capacitors_ThroughHole:CP_Radial_D16.0mm_P7.50mm" H 850 1850 50  0001 C CNN
+F 3 "" H 850 1850 50  0001 C CNN
+F 4 "ECA2AAM471X" H 6000 3600 60  0001 C CNN "PartNo"
+F 5 "PANASONIC" H 6000 3600 60  0001 C CNN "Manufacturer"
+F 6 "8767696" H 6000 3600 60  0001 C CNN "Distributor"
+	1    6000 3600
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	6000 3750 6000 4250
+Connection ~ 6000 4250
+Connection ~ 6000 3450
+$Comp
+L R R60
+U 1 1 58C97582
+P 4550 3900
+F 0 "R60" V 4630 3900 50  0000 C CNN
+F 1 "10k" V 4557 3901 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 4480 3900 30  0001 C CNN
+F 3 "" H 4550 3900 30  0000 C CNN
+	1    4550 3900
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	4550 4050 4550 4250
+Wire Wire Line
+	4550 3750 5000 3750
+Connection ~ 4550 3750
+Connection ~ 7100 3450
+$Comp
+L D_TVS_ALT D34
+U 1 1 58C97583
+P 3850 3850
+F 0 "D34" V 3804 3929 50  0000 L CNN
+F 1 "D_TVS_ALT" V 3895 3929 50  0001 L CNN
+F 2 "Diodes_SMD:Diode-SMC_Handsoldering" H 2100 2450 50  0001 C CNN
+F 3 "" H 2100 2450 50  0001 C CNN
+F 4 "?" H 3850 3850 60  0001 C CNN "PartNo"
+F 5 "WURTH" H 3850 3850 60  0001 C CNN "Manufacturer"
+F 6 "2536658" H 3850 3850 60  0001 C CNN "Distributor"
+	1    3850 3850
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	3850 4000 3850 4250
+$Comp
+L R R61
+U 1 1 58C97584
+P 5300 3450
+F 0 "R61" V 5380 3450 50  0000 C CNN
+F 1 "10" V 5307 3451 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 5230 3450 30  0001 C CNN
+F 3 "" H 5300 3450 30  0000 C CNN
+F 4 "?" H 5300 3450 60  0001 C CNN "PartNo"
+F 5 "?" H 5300 3450 60  0001 C CNN "Manufacturer"
+F 6 "1738932" H 5300 3450 60  0001 C CNN "Distributor"
+	1    5300 3450
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	2900 3450 4350 3450
+Connection ~ 3850 3450
+$Comp
+L D_Zener D53
+U 1 1 58C97585
+P 5650 3800
+F 0 "D53" V 5604 3879 50  0000 L CNN
+F 1 "16V" V 5695 3879 50  0000 L CNN
+F 2 "Diodes_SMD:D_SMB_Handsoldering" H 350 2200 50  0001 C CNN
+F 3 "" H 350 2200 50  0001 C CNN
+F 4 "1SMB5930BT3G" H 5650 3800 60  0001 C CNN "PartNo"
+F 5 "ON SEMI" H 5650 3800 60  0001 C CNN "Manufacturer"
+F 6 "1431172" H 5650 3800 60  0001 C CNN "Distributor"
+	1    5650 3800
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5650 3650 5650 3450
+Connection ~ 5650 3450
+Wire Wire Line
+	5650 3950 5650 4250
+$Comp
+L C C36
+U 1 1 58C97586
+P 4200 3850
+F 0 "C36" H 4250 3950 50  0000 L CNN
+F 1 "1u" H 4250 3750 50  0000 L CNN
+F 2 "Capacitors_SMD:C_1210_HandSoldering" H 4238 3700 30  0001 C CNN
+F 3 "" H 4200 3850 60  0000 C CNN
+F 4 "?" H 4200 3850 60  0001 C CNN "PartNo"
+F 5 "?" H 4200 3850 60  0001 C CNN "Manufacturer"
+F 6 "2320928" H 4200 3850 60  0001 C CNN "Distributor"
+	1    4200 3850
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	4200 4000 4200 4250
+Connection ~ 4200 4250
+Wire Wire Line
+	4200 3700 4200 3450
+Connection ~ 4200 3450
+$Comp
+L LED_ALT D55
+U 1 1 58C9758A
+P 7950 3950
+F 0 "D55" V 7988 3832 50  0000 R CNN
+F 1 "GREEN" V 7897 3832 50  0000 R CNN
+F 2 "LEDs:LED_0603" H 3800 300 50  0001 C CNN
+F 3 "" H 3800 300 50  0001 C CNN
+F 4 "?" H 7950 3950 60  0001 C CNN "PartNo"
+F 5 "?" H 7950 3950 60  0001 C CNN "Manufacturer"
+F 6 "?" H 7950 3950 60  0001 C CNN "Distributor"
+	1    7950 3950
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	7950 4250 7950 4100
+Connection ~ 7500 4250
+$Comp
+L R R62
+U 1 1 58C9758B
+P 7950 3650
+F 0 "R62" V 8030 3650 50  0000 C CNN
+F 1 "330" V 7957 3651 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 7880 3650 30  0001 C CNN
+F 3 "" H 7950 3650 30  0000 C CNN
+	1    7950 3650
+	-1   0    0    -1  
+$EndComp
+Connection ~ 7500 3450
+Wire Wire Line
+	7950 3450 7950 3500
+Connection ~ 5000 3450
+$Comp
+L Mounting_Hole MK5
+U 1 1 58C9758E
+P 9700 5500
+F 0 "MK5" H 9800 5546 50  0000 L CNN
+F 1 "Mounting_Hole" H 9800 5455 50  0000 L CNN
+F 2 "Mounting_Holes:MountingHole_3.2mm_M3" H 2850 3850 50  0001 C CNN
+F 3 "" H 2850 3850 50  0001 C CNN
+F 4 "?" H 9700 5500 60  0001 C CNN "PartNo"
+F 5 "?" H 9700 5500 60  0001 C CNN "Manufacturer"
+F 6 "?" H 9700 5500 60  0001 C CNN "Distributor"
+	1    9700 5500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mounting_Hole MK6
+U 1 1 58C9758F
+P 9700 5700
+F 0 "MK6" H 9800 5746 50  0000 L CNN
+F 1 "Mounting_Hole" H 9800 5655 50  0000 L CNN
+F 2 "Mounting_Holes:MountingHole_3.2mm_M3" H 2850 4050 50  0001 C CNN
+F 3 "" H 2850 4050 50  0001 C CNN
+F 4 "?" H 9700 5700 60  0001 C CNN "PartNo"
+F 5 "?" H 9700 5700 60  0001 C CNN "Manufacturer"
+F 6 "?" H 9700 5700 60  0001 C CNN "Distributor"
+	1    9700 5700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mounting_Hole MK7
+U 1 1 58C97590
+P 9700 5900
+F 0 "MK7" H 9800 5946 50  0000 L CNN
+F 1 "Mounting_Hole" H 9800 5855 50  0000 L CNN
+F 2 "Mounting_Holes:MountingHole_3.2mm_M3" H 2850 4250 50  0001 C CNN
+F 3 "" H 2850 4250 50  0001 C CNN
+F 4 "?" H 9700 5900 60  0001 C CNN "PartNo"
+F 5 "?" H 9700 5900 60  0001 C CNN "Manufacturer"
+F 6 "?" H 9700 5900 60  0001 C CNN "Distributor"
+	1    9700 5900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mounting_Hole MK8
+U 1 1 58C97591
+P 9700 6100
+F 0 "MK8" H 9800 6146 50  0000 L CNN
+F 1 "Mounting_Hole" H 9800 6055 50  0000 L CNN
+F 2 "Mounting_Holes:MountingHole_3.2mm_M3" H 2850 4450 50  0001 C CNN
+F 3 "" H 2850 4450 50  0001 C CNN
+F 4 "?" H 9700 6100 60  0001 C CNN "PartNo"
+F 5 "?" H 9700 6100 60  0001 C CNN "Manufacturer"
+F 6 "?" H 9700 6100 60  0001 C CNN "Distributor"
+	1    9700 6100
+	1    0    0    -1  
+$EndComp
+$Comp
+L D D54
+U 1 1 58C97593
+P 6700 3050
+F 0 "D54" H 6700 3266 50  0000 C CNN
+F 1 "D" H 6700 3175 50  0000 C CNN
+F 2 "Diodes_SMD:D_SOD-123" H 2400 2150 50  0001 C CNN
+F 3 "" H 2400 2150 50  0001 C CNN
+F 4 "?" H 6700 3050 60  0001 C CNN "PartNo"
+F 5 "?" H 6700 3050 60  0001 C CNN "Manufacturer"
+F 6 "?" H 6700 3050 60  0001 C CNN "Distributor"
+	1    6700 3050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6850 3050 7100 3050
+Wire Wire Line
+	6550 3050 6300 3050
+Wire Wire Line
+	6300 3050 6300 3450
+Connection ~ 2900 3450
+$Comp
+L LM7805CT U5
+U 1 1 58C989E8
+P 6700 3500
+F 0 "U5" H 6700 3817 50  0000 C CNN
+F 1 "LM7805CT" H 6700 3726 50  0000 C CNN
+F 2 "TO_SOT_Packages_SMD:TO-252-2Lead" H 6700 3600 50  0001 C CIN
+F 3 "" H 6700 3500 50  0001 C CNN
+F 4 "KA7805ERTF" H 6700 3500 60  0001 C CNN "PartNo"
+F 5 "FAIRCHILD" H 6700 3500 60  0001 C CNN "Manufacturer"
+F 6 "2102585" H 6700 3500 60  0001 C CNN "Distributor"
+	1    6700 3500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7100 3050 7100 3450
+$Comp
+L D_Zener D52
+U 1 1 58C99EB4
+P 5000 3600
+F 0 "D52" V 4954 3679 50  0000 L CNN
+F 1 "16V" V 5045 3679 50  0000 L CNN
+F 2 "Diodes_SMD:D_SMB_Handsoldering" H -300 2000 50  0001 C CNN
+F 3 "" H -300 2000 50  0001 C CNN
+F 4 "1SMB5930BT3G" H 5000 3600 60  0001 C CNN "PartNo"
+F 5 "ON SEMI" H 5000 3600 60  0001 C CNN "Manufacturer"
+F 6 "1431172" H 5000 3600 60  0001 C CNN "Distributor"
+	1    5000 3600
+	0    1    1    0   
+$EndComp
+Connection ~ 5650 4250
+$Comp
+L GND #PWR012
+U 1 1 58CA16AA
+P 6000 4250
+F 0 "#PWR012" H 6000 4000 50  0001 C CNN
+F 1 "GND" H 6005 4077 50  0000 C CNN
+F 2 "" H 6000 4250 50  0001 C CNN
+F 3 "" H 6000 4250 50  0001 C CNN
+	1    6000 4250
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

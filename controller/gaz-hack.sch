@@ -29,6 +29,7 @@ LIBS:atmel
 LIBS:contrib
 LIBS:valves
 LIBS:mic-parts
+LIBS:shield_arduino
 LIBS:controller-cache
 EELAYER 26 0
 EELAYER END
