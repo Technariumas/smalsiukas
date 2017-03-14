@@ -45,9 +45,9 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text HLabel 7550 4350 2    60   Input ~ 0
+Text HLabel 7550 3800 2    60   Input ~ 0
 SEAT_GND_HACK
-Text HLabel 6950 4250 0    60   Input ~ 0
+Text HLabel 6950 3700 0    60   Input ~ 0
 SEAT_HACK
 Text HLabel 7550 5700 2    60   Input ~ 0
 AUX_HACK
@@ -59,9 +59,9 @@ Text HLabel 7550 2750 2    60   Input ~ 0
 HORN_SW_HACK
 Text HLabel 7550 3250 2    60   Input ~ 0
 PARKING_HACK
-Text HLabel 6950 3700 0    60   Input ~ 0
+Text HLabel 6950 4250 0    60   Input ~ 0
 KEY_HOT_HACK
-Text HLabel 7550 3800 2    60   Input ~ 0
+Text HLabel 7550 4350 2    60   Input ~ 0
 KEY_COLD_HACK
 Text HLabel 7550 4800 2    60   Input ~ 0
 LIGHTS_HACK
@@ -93,7 +93,7 @@ F 4 "?" H 3600 1600 60  0001 C CNN "PartNo"
 F 5 "?" H 3600 1600 60  0001 C CNN "Manufacturer"
 F 6 "?" H 3600 1600 60  0001 C CNN "Distributor"
 	1    3600 1600
-	0    1    1    0   
+	0    -1   1    0   
 $EndComp
 $Comp
 L RELAY_SEPARATED K22
@@ -437,7 +437,7 @@ Wire Wire Line
 	3200 800  3200 2400
 Wire Wire Line
 	3200 1600 3300 1600
-Text HLabel 4200 1600 2    60   Input ~ 0
+Text HLabel 4200 2900 2    60   Input ~ 0
 ~KEY_ENABLE_PWR
 Wire Wire Line
 	3900 1600 4200 1600
@@ -495,7 +495,7 @@ Wire Wire Line
 	3200 1600 3200 3700
 Wire Wire Line
 	3200 2900 3300 2900
-Text HLabel 4200 2900 2    60   Input ~ 0
+Text HLabel 4200 1600 2    60   Input ~ 0
 ~SEAT_ENABLE_PWR
 Wire Wire Line
 	3900 2900 4200 2900
@@ -720,10 +720,10 @@ F 6 "?" H 7250 5600 60  0001 C CNN "Distributor"
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR022
+L GND #PWR024
 U 1 1 58C9BB32
 P 3750 1100
-F 0 "#PWR022" H -600 -2450 50  0001 C CNN
+F 0 "#PWR024" H -600 -2450 50  0001 C CNN
 F 1 "GND" H 3755 927 50  0000 C CNN
 F 2 "" H -600 -2200 50  0001 C CNN
 F 3 "" H -600 -2200 50  0001 C CNN
@@ -745,10 +745,10 @@ F 6 "?" H 4100 950 60  0001 C CNN "Distributor"
 	-1   0    0    1   
 $EndComp
 $Comp
-L GND #PWR023
+L GND #PWR025
 U 1 1 58C9BB3F
 P 4500 1100
-F 0 "#PWR023" H 150 -2450 50  0001 C CNN
+F 0 "#PWR025" H 150 -2450 50  0001 C CNN
 F 1 "GND" H 4505 927 50  0000 C CNN
 F 2 "" H 150 -2200 50  0001 C CNN
 F 3 "" H 150 -2200 50  0001 C CNN
