@@ -64,7 +64,7 @@ U 1 1 58C048AB
 P 4800 2700
 F 0 "C20" H 4850 2800 50  0000 L CNN
 F 1 "1u" H 4850 2600 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 4838 2550 30  0001 C CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 4838 2550 30  0001 C CNN
 F 3 "" H 4800 2700 60  0000 C CNN
 	1    4800 2700
 	1    0    0    -1  
@@ -108,7 +108,7 @@ TX
 Text HLabel 5250 3600 0    60   Input ~ 0
 ~RE
 Text HLabel 4800 2350 0    60   Input ~ 0
-VCC
++5V
 Wire Wire Line
 	4800 2550 4800 2350
 Text HLabel 6000 4150 3    60   Input ~ 0

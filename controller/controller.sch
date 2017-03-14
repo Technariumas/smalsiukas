@@ -116,7 +116,7 @@ F1 "rs485-interface.sch" 60
 F2 "RX" I R 10450 4200 60 
 F3 "TX" I R 10450 4100 60 
 F4 "~RE" I R 10450 4000 60 
-F5 "VCC" I R 10450 3600 60 
+F5 "+5V" I R 10450 3600 60 
 F6 "GND" I R 10450 4550 60 
 F7 "VCC_HIGH" I R 10450 3500 60 
 $EndSheet
@@ -125,10 +125,9 @@ S 5450 3450 1750 1250
 U 58C0B277
 F0 "Power" 60
 F1 "power.sch" 60
-F2 "VCC_CLEAN" I R 7200 3750 60 
-F3 "VCC_DIRTY" I R 7200 3650 60 
-F4 "VCC_HIGH" I R 7200 3550 60 
-F5 "GND" I L 5450 4600 60 
+F2 "+5V" I R 7200 3750 60 
+F3 "VCC_HIGH" I R 7200 3550 60 
+F4 "GND" I L 5450 4600 60 
 $EndSheet
 Wire Wire Line
 	7200 3550 7350 3550
@@ -388,4 +387,6 @@ Connection ~ 8500 3000
 Wire Wire Line
 	18500 11700 18350 11700
 Connection ~ 18500 4500
+Text Notes 11150 10150 0    60   ~ 0
+TODO:\nX P mosfetai greičio hackui\n* gecko interface\nX elektromagneto interface\n* reguliatoriai\n* low battery sense?
 $EndSCHEMATC

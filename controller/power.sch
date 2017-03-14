@@ -56,9 +56,7 @@ F 3 "" H -600 -1600 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 Text HLabel 6700 1900 2    60   Input ~ 0
-VCC_CLEAN
-Text HLabel 6700 2100 2    60   Input ~ 0
-VCC_DIRTY
++5V
 Text HLabel 1400 1350 2    60   Input ~ 0
 VCC_HIGH
 Text HLabel 6700 2600 2    60   Input ~ 0
