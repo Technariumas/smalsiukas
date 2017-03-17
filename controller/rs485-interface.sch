@@ -96,12 +96,6 @@ Wire Wire Line
 Wire Wire Line
 	4450 3600 5600 3600
 Connection ~ 5600 3600
-Text Label 5250 3400 0    60   ~ 0
-RX
-Text Label 5250 3800 0    60   ~ 0
-TX
-Text Label 5250 3600 0    60   ~ 0
-~RE
 Text HLabel 4450 3400 0    60   Input ~ 0
 RX
 Text HLabel 4450 3800 0    60   Input ~ 0
@@ -129,8 +123,11 @@ U 1 1 58C08A57
 P 7400 3600
 F 0 "J21" H 7478 3641 50  0000 L CNN
 F 1 "CONN_01X04" H 7478 3550 50  0000 L CNN
-F 2 "" H -400 250 50  0001 C CNN
+F 2 "Connectors_JST:JST_EH_B04B-EH-A_04x2.50mm_Straight" H -400 250 50  0001 C CNN
 F 3 "" H -400 250 50  0001 C CNN
+F 4 "?" H 7400 3600 60  0001 C CNN "PartNo"
+F 5 "?" H 7400 3600 60  0001 C CNN "Manufacturer"
+F 6 "1830714, 1830708, 1863249" H 7400 3600 60  0001 C CNN "Distributor"
 	1    7400 3600
 	1    0    0    -1  
 $EndComp

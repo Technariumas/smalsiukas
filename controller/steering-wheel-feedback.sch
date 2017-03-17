@@ -51,8 +51,11 @@ U 1 1 58C0E3DC
 P 6150 3200
 F 0 "J23" H 6228 3241 50  0000 L CNN
 F 1 "CONN_01X02" H 6228 3150 50  0000 L CNN
-F 2 "" H -3300 -450 50  0001 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_Pheonix_MKDS1.5-2pol" H -3300 -450 50  0001 C CNN
 F 3 "" H -3300 -450 50  0001 C CNN
+F 4 "?" H 6150 3200 60  0001 C CNN "PartNo"
+F 5 "?" H 6150 3200 60  0001 C CNN "Manufacturer"
+F 6 "?" H 6150 3200 60  0001 C CNN "Distributor"
 	1    6150 3200
 	1    0    0    -1  
 $EndComp
