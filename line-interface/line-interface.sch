@@ -258,13 +258,7 @@ Wire Wire Line
 	3300 4000 3000 4000
 Wire Wire Line
 	6400 3500 6900 3500
-Wire Wire Line
-	3000 3500 5600 3500
-Wire Wire Line
-	3000 3400 5600 3400
 Connection ~ 5600 3700
-Wire Wire Line
-	5600 3700 5600 3800
 Wire Wire Line
 	5600 3700 4900 3700
 Wire Wire Line
@@ -393,7 +387,7 @@ Wire Wire Line
 	5100 1350 5100 1200
 Connection ~ 6250 2550
 $Comp
-L Q_PMOS_GSD Q1
+L Q_PMOS_GDS Q1
 U 1 1 58BAC865
 P 2450 1450
 F 0 "Q1" V 2778 1450 50  0000 C CNN
@@ -532,41 +526,8 @@ F 3 "" H -1800 3300 50  0001 C CNN
 	1    4150 4500
 	1    0    0    -1  
 $EndComp
-$Comp
-L R R5
-U 1 1 58BB002C
-P 4300 1900
-F 0 "R5" V 4380 1900 50  0000 C CNN
-F 1 "18.2k" V 4307 1901 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 4230 1900 30  0001 C CNN
-F 3 "" H 4300 1900 30  0000 C CNN
-F 4 "?" H 4300 1900 60  0001 C CNN "PartNo"
-F 5 "?" H 4300 1900 60  0001 C CNN "Manufacturer"
-F 6 "1469829" H 4300 1900 60  0001 C CNN "Distributor"
-	1    4300 1900
-	-1   0    0    1   
-$EndComp
 Wire Wire Line
-	4300 2050 4300 2150
-Wire Wire Line
-	4300 1650 4300 1750
-$Comp
-L R R7
-U 1 1 58BB0271
-P 4550 1650
-F 0 "R7" V 4630 1650 50  0000 C CNN
-F 1 "6.04k" V 4557 1651 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 4480 1650 30  0001 C CNN
-F 3 "" H 4550 1650 30  0000 C CNN
-F 4 "?" H 4550 1650 60  0001 C CNN "PartNo"
-F 5 "?" H 4550 1650 60  0001 C CNN "Manufacturer"
-F 6 "2059386" H 4550 1650 60  0001 C CNN "Distributor"
-	1    4550 1650
-	0    -1   1    0   
-$EndComp
-Wire Wire Line
-	4300 1650 4400 1650
-Connection ~ 4300 1650
+	4300 1650 4300 2150
 $Comp
 L +5V #PWR017
 U 1 1 58BB04F1
@@ -715,20 +676,6 @@ F 6 "?" H 4050 3850 60  0001 C CNN "Distributor"
 	0    1    -1   0   
 $EndComp
 $Comp
-L LED_ALT D5
-U 1 1 58BD44C6
-P 4450 3850
-F 0 "D5" V 4488 3732 50  0000 R CNN
-F 1 "RED" V 4397 3732 50  0000 R CNN
-F 2 "LEDs:LED_0603" H 300 200 50  0001 C CNN
-F 3 "" H 300 200 50  0001 C CNN
-F 4 "?" H 4450 3850 60  0001 C CNN "PartNo"
-F 5 "?" H 4450 3850 60  0001 C CNN "Manufacturer"
-F 6 "?" H 4450 3850 60  0001 C CNN "Distributor"
-	1    4450 3850
-	0    1    1    0   
-$EndComp
-$Comp
 L GND #PWR018
 U 1 1 58BD465C
 P 4050 4000
@@ -783,25 +730,9 @@ F 3 "" H 3650 3700 30  0000 C CNN
 $EndComp
 Wire Wire Line
 	3000 3600 3500 3600
-Wire Wire Line
-	3800 3700 4450 3700
 Connection ~ 2900 1350
 Wire Wire Line
-	4700 950  4700 1650
-$Comp
-L LR12K-RESCUE-line-interface U1
-U 1 1 58BD94ED
-P 4300 1400
-F 0 "U1" H 4300 1717 50  0000 C CNN
-F 1 "LR12K" H 4300 1626 50  0000 C CNN
-F 2 "TO_SOT_Packages_SMD:TO-252-2Lead" H -100 100 50  0001 C CIN
-F 3 "" H -100 0   50  0001 C CNN
-F 4 "?" H 4300 1400 60  0001 C CNN "PartNo"
-F 5 "?" H 4300 1400 60  0001 C CNN "Manufacturer"
-F 6 "2448520" H 4300 1400 60  0001 C CNN "Distributor"
-	1    4300 1400
-	1    0    0    -1  
-$EndComp
+	4700 950  4700 1350
 $Comp
 L Mounting_Hole MK1
 U 1 1 58BD6CBA
@@ -934,22 +865,38 @@ Text Label 11150 2400 2    60   ~ 0
 SCK
 Text Label 11150 2500 2    60   ~ 0
 ~CS
-Connection ~ 4050 3700
-$Comp
-L +5V #PWR020
-U 1 1 58BD9228
-P 4600 4000
-F 0 "#PWR020" H -1350 2650 50  0001 C CNN
-F 1 "+5V" H 4615 4173 50  0000 C CNN
-F 2 "" H -1350 2800 50  0001 C CNN
-F 3 "" H -1350 2800 50  0001 C CNN
-	1    4600 4000
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4600 4000 4450 4000
 Text Label 3300 4000 2    60   ~ 0
 ~CS
 Wire Wire Line
 	3500 3600 3500 3700
+$Comp
+L LM7805CT U1
+U 1 1 58CBB2F0
+P 4300 1400
+F 0 "U1" H 4300 1717 50  0000 C CNN
+F 1 "LM7805CT" H 4300 1626 50  0000 C CNN
+F 2 "TO_SOT_Packages_THT:TO-220_Horizontal" H 4300 1500 50  0001 C CIN
+F 3 "" H 4300 1400 50  0001 C CNN
+F 4 "?" H 4300 1400 60  0001 C CNN "PartNo"
+F 5 "?" H 4300 1400 60  0001 C CNN "Manufacturer"
+F 6 "?" H 4300 1400 60  0001 C CNN "Distributor"
+	1    4300 1400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5600 3500 5600 3700
+Wire Wire Line
+	5600 3400 5000 3400
+Wire Wire Line
+	5000 3400 5000 3500
+Wire Wire Line
+	5000 3500 3000 3500
+Wire Wire Line
+	3000 3400 4800 3400
+Wire Wire Line
+	4800 3400 4800 3800
+Wire Wire Line
+	4800 3800 5600 3800
+Wire Wire Line
+	3800 3700 4050 3700
 $EndSCHEMATC

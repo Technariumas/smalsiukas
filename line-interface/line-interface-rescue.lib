@@ -1,11 +1,11 @@
 EESchema-LIBRARY Version 2.3
 #encoding utf-8
 #
-# LR12K-RESCUE-line-interface
+# LR12K-RESCUE-line-interface-RESCUE-line-interface
 #
-DEF LR12K-RESCUE-line-interface U 0 40 Y Y 1 F N
+DEF LR12K-RESCUE-line-interface-RESCUE-line-interface U 0 40 Y Y 1 F N
 F0 "U" -200 200 50 H V C CNN
-F1 "LR12K-RESCUE-line-interface" 0 200 50 H V L CNN
+F1 "LR12K-RESCUE-line-interface-RESCUE-line-interface" 0 200 50 H V L CNN
 F2 "TO_SOT_Packages_SMD:SOT-223" 0 100 50 H I C CIN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -14,8 +14,8 @@ $ENDFPLIST
 DRAW
 S -250 150 250 -150 0 1 10 f
 X IN 1 -400 50 150 R 50 50 1 1 I
-X OUT 2 400 50 150 L 50 50 1 1 w
-X ADJ 3 0 -250 100 U 50 50 1 1 I
+X ADJ 2 0 -250 100 U 50 50 1 1 I
+X OUT 3 400 50 150 L 50 50 1 1 w
 ENDDRAW
 ENDDEF
 #
