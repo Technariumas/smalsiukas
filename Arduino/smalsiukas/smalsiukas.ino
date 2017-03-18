@@ -4,7 +4,7 @@
 
 #ifdef LINDE
 #include "linde.h"
-#include "SteeringPot.h"
+#include "include\SteeringPot.h"
 #endif
 
 void setup() {

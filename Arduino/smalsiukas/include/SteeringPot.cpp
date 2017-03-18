@@ -2,15 +2,14 @@
 #include "SteeringPot.h"
 
 // constructor
-short SteeringPot::SteeringPot(short pwmPin) { 
+SteeringPot::SteeringPot(short int pwmPin) { 
   // init system
     _pin=pwmPin<13?pwmPin:6; //fall back to pin6 if incerrect pin was provided
     pinMode(_pin, OUTPUT);
     
     _angle=0;
-    this.straight();
+    this->straight();
     _init=1;
-    return _init;
   }
 
 // turn steering wheel to the given angle (in grads, -100 to 100)

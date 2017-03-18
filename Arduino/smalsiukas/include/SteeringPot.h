@@ -5,6 +5,7 @@ class SteeringPot
 {
 
   public:
+    SteeringPot(short int);
     short turn(short); // turn steering wheel to the given angle (in grads, -100 to 100)
     short straight(void); // run straight, equals to turn(0)
     short getAngle(void); // report current angle
@@ -17,6 +18,6 @@ class SteeringPot
     short _angle; // ange of the wheel, in grads (-100 to 100)
     short _pin; // pin for PWM
     bool _init=0;
-}
+};
 
 #endif
