@@ -51,13 +51,13 @@ U 1 1 58CA4536
 P 9600 3250
 F 0 "J6" H 9678 3291 50  0000 L CNN
 F 1 "CONN_01X05" H 9678 3200 50  0000 L CNN
-F 2 "Connectors_Terminal_Blocks:TerminalBlock_Pheonix_MKDS1.5-5pol" H 9600 3250 50  0001 C CNN
+F 2 "smalsiukas-footpints:TerminalBlock_5.08-5pol" H 9600 3250 50  0001 C CNN
 F 3 "" H 9600 3250 50  0001 C CNN
 F 4 "?" H 9600 3250 60  0001 C CNN "PartNo"
 F 5 "?" H 9600 3250 60  0001 C CNN "Manufacturer"
 F 6 "?" H 9600 3250 60  0001 C CNN "Distributor"
 	1    9600 3250
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 Wire Wire Line
 	6650 3150 9000 3150

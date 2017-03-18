@@ -65,13 +65,13 @@ U 1 1 58D1C1D0
 P 9050 2700
 F 0 "J24" H 9128 2741 50  0000 L CNN
 F 1 "CONN_01X02" H 9128 2650 50  0000 L CNN
-F 2 "Connectors_Terminal_Blocks:TerminalBlock_Pheonix_MKDS1.5-2pol" H -150 -1250 50  0001 C CNN
+F 2 "smalsiukas-footpints:TerminalBlock_5.08-2pol" H -150 -1250 50  0001 C CNN
 F 3 "" H -150 -1250 50  0001 C CNN
 F 4 "?" H 9050 2700 60  0001 C CNN "PartNo"
 F 5 "?" H 9050 2700 60  0001 C CNN "Manufacturer"
 F 6 "?" H 9050 2700 60  0001 C CNN "Distributor"
 	1    9050 2700
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 Wire Wire Line
 	6950 2200 6950 2500
@@ -431,13 +431,13 @@ U 1 1 58C855A9
 P 8650 4800
 F 0 "J5" H 8728 4841 50  0000 L CNN
 F 1 "CONN_01X02" H 8728 4750 50  0000 L CNN
-F 2 "Connectors_Terminal_Blocks:TerminalBlock_Pheonix_MKDS1.5-2pol" H -550 850 50  0001 C CNN
+F 2 "smalsiukas-footpints:TerminalBlock_5.08-2pol" H -550 850 50  0001 C CNN
 F 3 "" H -550 850 50  0001 C CNN
 F 4 "?" H 8650 4800 60  0001 C CNN "PartNo"
 F 5 "?" H 8650 4800 60  0001 C CNN "Manufacturer"
 F 6 "?" H 8650 4800 60  0001 C CNN "Distributor"
 	1    8650 4800
-	1    0    0    1   
+	1    0    0    -1  
 $EndComp
 Text HLabel 8450 4300 0    60   Input ~ 0
 VCC

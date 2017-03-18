@@ -51,13 +51,13 @@ U 1 1 58C0B3B4
 P 2400 3500
 F 0 "J22" H 2319 3225 50  0000 C CNN
 F 1 "BATT" H 2319 3316 50  0000 C CNN
-F 2 "Connectors_Terminal_Blocks:TerminalBlock_Pheonix_MKDS1.5-2pol" H 900 250 50  0001 C CNN
+F 2 "smalsiukas-footpints:TerminalBlock_5.08-2pol" H 900 250 50  0001 C CNN
 F 3 "" H 900 250 50  0001 C CNN
 F 4 "?" H 2400 3500 60  0001 C CNN "PartNo"
 F 5 "?" H 2400 3500 60  0001 C CNN "Manufacturer"
 F 6 "?" H 2400 3500 60  0001 C CNN "Distributor"
 	1    2400 3500
-	-1   0    0    -1  
+	-1   0    0    1   
 $EndComp
 Text HLabel 8550 3450 2    60   Input ~ 0
 +5V
