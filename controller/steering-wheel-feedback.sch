@@ -60,7 +60,7 @@ F 6 "?" H 6150 3200 60  0001 C CNN "Distributor"
 	1    0    0    1   
 $EndComp
 Wire Wire Line
-	5950 3150 5050 3150
+	5050 3150 5950 3150
 $Comp
 L R R5
 U 1 1 58C0E434
@@ -84,10 +84,10 @@ F 3 "" H -2900 650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR015
+L GND #PWR18
 U 1 1 58C0E4A6
 P 5050 3750
-F 0 "#PWR015" H 5100 3800 50  0001 C CNN
+F 0 "#PWR18" H 5100 3800 50  0001 C CNN
 F 1 "GND" H 5055 3577 50  0000 C CNN
 F 2 "" H -3000 100 50  0001 C CNN
 F 3 "" H -3000 100 50  0001 C CNN
@@ -111,7 +111,7 @@ F 6 "2690025" H 4800 3600 60  0001 C CNN "Distributor"
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	4500 3750 5250 3750
+	4500 3750 5700 3750
 Connection ~ 5050 3750
 Connection ~ 5050 3450
 Connection ~ 4800 3450
@@ -130,6 +130,25 @@ Connection ~ 4500 3450
 Connection ~ 4800 3750
 Text HLabel 4250 3450 0    60   Input ~ 0
 WHEEL_POS_ANALOG
-Text HLabel 5250 3750 2    60   Input ~ 0
+Text HLabel 4500 3750 0    60   Input ~ 0
 GND
+$Comp
+L D_TVS_ALT D41
+U 1 1 58D0DEF8
+P 5700 3450
+F 0 "D41" V 5550 3350 50  0000 L CNN
+F 1 "D_TVS_ALT" V 5745 3529 50  0001 L CNN
+F 2 "Diodes_SMD:SOD-323" H 5700 3450 50  0001 C CNN
+F 3 "" H 5700 3450 50  0001 C CNN
+F 4 "?" H 5700 3450 60  0001 C CNN "PartNo"
+F 5 "?" H 5700 3450 60  0001 C CNN "Manufacturer"
+F 6 "2059012" H 5700 3450 60  0001 C CNN "Distributor"
+	1    5700 3450
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5700 3300 5700 3150
+Connection ~ 5700 3150
+Wire Wire Line
+	5700 3750 5700 3600
 $EndSCHEMATC
