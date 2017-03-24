@@ -26,3 +26,5 @@ arduino-1.5.8/
 *.o
 *.hex
 *.elf
+controller/controller-rescue.lib
+controller/takeover-rescue.lib
