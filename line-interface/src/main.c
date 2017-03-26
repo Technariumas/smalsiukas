@@ -13,12 +13,17 @@
 #define SPI_MOSI PA6
 #define SPI_CLK PA4
 
+char lineData = 0;
+char lineFiltered = 0;
+uint8_t sensors[8];
+
 inline static void serialSetup() {
-    #define BAUD 9600
+    #define BAUD 115200
     #include <util/setbaud.h>
     DDRA |= _BV(DRIVER_ENABLE);
     UBRR0H = UBRRH_VALUE;
     UBRR0L = UBRRL_VALUE;
+    UCSR0A |= _BV(U2X0);
     UCSR0B = _BV(RXEN0) | _BV(TXEN0);
     UCSR0C = _BV(UCSZ00) | _BV(UCSZ01);
 }
@@ -90,7 +95,29 @@ inline static outputBits(char c) {
     uart_putchar('\n', stdout);
 }
 
-char sensorData  = 0;
+inline static outputSensors() {
+    uint8_t i;
+    for(i = 0; i < 8; i++) {
+        if(sensors[i] == 255) {
+            uart_putchar('1', stdout);
+        } else {
+            uart_putchar('0', stdout);
+        }
+    }    
+    uart_putchar('\n', stdout);
+}
+
+inline static void filter(uint8_t line) {
+    uint8_t i;
+    for(i = 0; i < 8;i++) {
+        sensors[i] = (sensors[i] << 1) | (0 != (line & _BV(i)));
+        if(lineFiltered & _BV(i) && 0 == sensors[i]) {
+            lineFiltered &= ~_BV(i);
+        } else if(0 == (lineFiltered & _BV(i)) && 255 == sensors[i]) {
+            lineFiltered |= _BV(i);
+        }
+    }
+}
 
 int main (void) {
     wdt_disable();
@@ -103,10 +130,9 @@ int main (void) {
 
     while(1) {
         ledOn();
-        _delay_ms(100);
+        lineData = readSPI();
+        filter(lineData);
         ledOff();
-        _delay_ms(100);
-        sensorData = readSPI();
-        outputBits(sensorData);
+        outputBits(lineFiltered);
     }
 }
