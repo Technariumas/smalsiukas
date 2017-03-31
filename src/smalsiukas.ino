@@ -1,37 +1,34 @@
 #include "pins.h"
 #include "smalsiukas.h"
+#include "steering.h"
+#include "line_follower.h"
 
-void initPins() {
-	pinMode(UART_ENABLE 				, OUTPUT);
-	pinMode(STEERING_FAULT 				, INPUT);
-	pinMode(STEERING_DIR 				, OUTPUT);
-	pinMode(STEERING_STEP 				, OUTPUT);
-	pinMode(STEERING_ENABLE 			, OUTPUT);
-	pinMode(LINEAR_ACTUATOR_DIRECTION 	, OUTPUT);
-	pinMode(LINEAR_ACTUATOR_ENABLE 		, OUTPUT);
-	pinMode(MAGNET_ENGAGE 				, OUTPUT);
-	pinMode(SPI_LATCH 					, OUTPUT);
-	pinMode(SPI_DATA 					, OUTPUT);
-	pinMode(SPI_CLK 					, OUTPUT);
-	pinMode(RANGEFINDER_WARNING 		, INPUT);
-	pinMode(GAZ_SPEED1 					, OUTPUT);
-	pinMode(GAZ_SPEED2 					, OUTPUT);
-	pinMode(GAZ_SPEED3 					, OUTPUT);
-}
 
-uint8_t getErrorAngle(line) {
-	return 0;
+void setup() {
+	pinsInit();
+	startupSequence();
 }
 
 uint8_t line;
 
+//koeficientas, kiek pasukti ratus esant kokiam nuokrypiui
+#define P (1 * 1024)
+
 void loop() {
-
-	if(Serial.available()) {
-		line = Serial.read();
+	if(isTimeToSteer()) {
+		if(isLineAvailable()) {
+			line = getLine();
+			error = getErrorAngle(line);
+			if(0 == line) {
+				//ERROR! nemato linijos!
+			} else if(128 == error) {
+				//ERROR! neatpažinta užnoizinta linija!
+			} else {
+				steeringSetAngle(-1 * (error * P >> 1024))
+			}
+		} else if(isRequestTimeout()) {
+			//ERROR! neatsiliepia sensorius!!!
+		}
 	}
-
-	error = getErrorAngle(line);
-
-
+	steeringRun();
 }

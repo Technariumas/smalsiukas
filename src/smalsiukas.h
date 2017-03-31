@@ -1,139 +1,64 @@
+#ifndef __SMALSIUKAS_H
+#define __SMALSIUKAS_H
 
-void controlTakeover() {
-	digitalWrite(TAKEOVER, HIGH);
+#include "control.h"
+#include "brake.h"
+#include "steering.h"
+
+#define SYNC 1
+#define ASYNC 0
+
+#define ERROR_STEERING_DRIVER_FAULT 0
+#define ERROR_OBSTACLE 1
+#define ERROR_LINE_NOT_PRESENT 2
+#define LINE_NOT_RECOGNISED 3
+#define ERROR_STEERING 4
+
+uint8_t startupSequence() {
+	if(isSteeringDriverFault()) {
+		return ERROR_STEERING_DRIVER_FAULT;
+	}
+
+	checkForLine(SYNC);
+	if(!isLinePresent()){
+		return ERROR_LINE_NOT_PRESENT;
+	}
+
+	if(!isLineRecognised()) {
+		return LINE_NOT_RECOGNISED;
+	}
+
+	checkForObstacle(SYNC);
+	if(isObstacleInRange()) {
+		return ERROR_OBSTACLE;
+	}
+
+	controlAllOff();
+	controlTakeover();
+
+	steeringInit();
+	if(isSteeringFault()) {
+		return ERROR_STEERING;
+	}
+	steeringDisable();
+
+	brakeEmergencyRelease();
+	if(isEmergencyBrakeProblem()) {
+		return EMERGENCY_BRAKE_PROBLEM;
+	}
+
+	//TODO : gražinant klaidą nepalikti smalsiuko tarpinėje būsenoje!!!!
+
+	seatEnable();
+	keyOn();
 }
 
-void controlRelease() {
-	digitalWrite(TAKEOVER, LOW);
-}
-
-void keyOn() {
-	digitalWrite(KEY_ENABLE, HIGH);
-}
-
-void keyOff() {
-	digitalWrite(KEY_ENABLE, LOW);
-}
-
-void gasEnable() {
-	digitalWrite(GAZ_ENABLE, HIGH);
-}
-
-void gasDisable() {
-	digitalWrite(GAZ_ENABLE, LOW);
-}
-
-typedef enum {
-	SPEED1,
-	SPEED2,
-	SPEED3
-} Speed_t;
-
-void setSpeed(Speed_t speed){
-	digitalWrite(GAZ_SPEED1, HIGH);
-	digitalWrite(GAZ_SPEED2, LOW);
-	digitalWrite(GAZ_SPEED3, LOW);
-}
-
-uint8_t control = 0;
-
-#define CTRL_SEAT 		0b00000001
-#define CTRL_PARKING	0b00000010
-#define CTRL_HORN		0b00000100
-#define CTRL_DIR_BACK	0b00001000
-#define CTRL_DIR_FWD	0b00010000
-#define CTRL_AUX		0b00100000
-#define CTRL_MIRGALKE	0b01000000
-#define CTRL_LIGHTS		0b10000000
-
-void sendControl() {
-	spiBitBang(control);
-}
-
-void seatEnable() {
-	control = control | CTRL_SEAT;
-	sendControl();
-}
-
-void seatDisable() {
-	control = control & ~CTRL_SEAT;
-	sendControl();
-}
-
-void parkingOn() {
-	control = control & ~CTRL_PARKING;
-	sendControl();
-}
-
-void parkingOff() {
-	control = control | CTRL_PARKING;
-	sendControl();
-}
-
-void hornOn() {
-	control = control | CTRL_HORN;
-	sendControl();
-}
-
-void hornOff() {
-	control = control & ~CTRL_HORN;
-	sendControl();
-}
-
-void directionForwardOn() {
-	control = control | CTRL_DIR_FWD;
-	control = control & ~CTRL_DIR_BACK;
-	sendControl();
-}
-
-void directionBackwardOn() {
-	control = control | CTRL_DIR_BACK;
-	control = control & ~CTRL_DIR_FWD;
-	sendControl();
-}
-
-void directionOff() {
-	control = control & ~CTRL_DIR_FWD;
-	control = control & ~CTRL_DIR_BACK;
-	sendControl();
-}
-
-void lightsOn() {
-	control = control | CTRL_LIGHTS;
-	sendControl();
-}
-
-void lightsOff() {
-	control = control & ~CTRL_LIGHTS;
-	sendControl();
-}
-
-void mirgalkeOn() {
-	control = control | CTRL_MIRGALKE;
-	sendControl();
-}
-
-void mirgalkeOff() {
-	control = control & ~CTRL_MIRGALKE;
-	sendControl();
-}
-
-void auxOn() {
-	control = control | CTRL_AUX;
-	sendControl();
-}
-
-void auxOff() {
-	control = control & ~CTRL_AUX;
-	sendControl();
-}
 
 void go() {
 	gasDisable();
 	directionOff();
 	parkingOn();
 
-	keyOn();
 	parkingOff();
 	directionForwardOn();
 	gasEnable();
@@ -146,3 +71,4 @@ void stop() {
 	directionOff();
 }
 
+#endif
