@@ -844,4 +844,6 @@ F 6 "?" H 12850 5500 60  0001 C CNN "Distributor"
 	1    12850 5500
 	1    0    0    -1  
 $EndComp
+Text Notes 7350 6650 0    60   ~ 0
+!!!! FIX: p-channel mosfets are in wrong orientation!
 $EndSCHEMATC

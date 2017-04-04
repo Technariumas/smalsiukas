@@ -245,4 +245,6 @@ Wire Wire Line
 	4950 3400 4450 3400
 Wire Wire Line
 	4950 3800 4450 3800
+Text Notes 4050 4600 0    60   ~ 0
+FIX: R57 - 330R because of internal Arduino serial 1k resistor on Rx pin
 $EndSCHEMATC

@@ -151,4 +151,8 @@ Wire Wire Line
 Connection ~ 5700 3150
 Wire Wire Line
 	5700 3750 5700 3600
+Text Notes 5850 3600 0    60   ~ 0
+FIX: D41 should be 16V TVS, not 5V
+Text Notes 5850 3750 0    60   ~ 0
+FIX: buffer the signal with opamp
 $EndSCHEMATC

@@ -457,4 +457,6 @@ Wire Wire Line
 	7350 5100 8550 5100
 Text HLabel 8550 5100 2    60   Input ~ 0
 +5V_DIRTY
+Text Notes 6100 5550 0    60   ~ 0
+FIX: connect U16 before R61 s R61 dissipates to much power!
 $EndSCHEMATC

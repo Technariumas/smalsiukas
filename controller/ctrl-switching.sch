@@ -1070,4 +1070,6 @@ F 3 "" H 4650 5400 50  0001 C CNN
 	1    7400 9600
 	-1   0    0    1   
 $EndComp
+Text Notes 2500 9800 0    60   ~ 0
+FIX: add puldowns to SPI control lines so that relays don't switch during transients
 $EndSCHEMATC
