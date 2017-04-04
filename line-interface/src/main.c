@@ -21,6 +21,8 @@ inline static void serialSetup() {
     #define BAUD 115200
     #include <util/setbaud.h>
     DDRA |= _BV(DRIVER_ENABLE);
+    PORTA &= ~_BV(DRIVER_ENABLE);
+
     UBRR0H = UBRRH_VALUE;
     UBRR0L = UBRRL_VALUE;
     UCSR0A |= _BV(U2X0);
@@ -46,12 +48,19 @@ inline static uint8_t readSPI() {
     return SPDR;
 }
 
+inline static void timerSetup() {
+    OCR1A = 20000;
+    TIMSK1 = _BV(OCIE1A);
+    TCCR1B = _BV(WGM12) | _BV(CS11);
+}
+
 inline static void serialDriverEnable() {
     PORTA |= _BV(DRIVER_ENABLE);
 }
 
 inline static void serialDriverDisable() {
     PORTA &= ~_BV(DRIVER_ENABLE);
+    UCSR0A |= _BV(TXC0);
 }
 
 void uart_putchar(char c, FILE *stream) {
@@ -119,20 +128,47 @@ inline static void filter(uint8_t line) {
     }
 }
 
+volatile uint8_t doScan = 0;
+
+ISR(TIMER1_COMPA_vect) {
+    doScan = 1;
+}
+
+inline static uint8_t isRequest() {
+    return (_BV(RXC0) & UCSR0A) && '?' == UDR0;
+}
+
+inline static uint8_t isTxDone() {
+    return (_BV(TXC0) & UCSR0A);
+}
+
 int main (void) {
     wdt_disable();
 
     ledSetup();
     stdout = &uart_output;
     serialSetup();
-    serialDriverEnable();
     setupSPI();
+    timerSetup();
+    sei();
 
     while(1) {
-        ledOn();
-        lineData = readSPI();
-        filter(lineData);
-        ledOff();
-        outputBits(lineFiltered);
+        if(doScan) {
+            lineData = readSPI();
+            filter(lineData);
+            doScan = 0;
+        }
+        if(isRequest()) {
+            ledOn();
+            serialDriverEnable();
+            _delay_us(200);
+            uart_putchar(lineFiltered, stdout);
+            uart_putchar(~lineFiltered + 1, stdout);
+        }else{
+            if(isTxDone()) {
+                serialDriverDisable();
+                ledOff();
+            }
+        }
     }
 }
