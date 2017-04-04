@@ -36,11 +36,11 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 3 10
-Title "Digital soil moisture sensor"
-Date "Tue 17 Feb 2015"
-Rev ""
-Comp "Catnip electronics"
-Comment1 "by Albertas Mickėnas mic@wemakethings.net"
+Title "Smalsiukas - Toyota lifter hack"
+Date "2017-04-01"
+Rev "Rev1"
+Comp "TECHNARIUM"
+Comment1 "Albertas Mickėnas"
 Comment2 ""
 Comment3 ""
 Comment4 ""

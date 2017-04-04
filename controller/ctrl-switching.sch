@@ -36,11 +36,11 @@ EELAYER END
 $Descr A3 16535 11693
 encoding utf-8
 Sheet 10 10
-Title ""
-Date ""
-Rev ""
-Comp ""
-Comment1 ""
+Title "Smalsiukas - Toyota lifter hack"
+Date "2017-04-01"
+Rev "Rev1"
+Comp "TECHNARIUM"
+Comment1 "Albertas Mickėnas"
 Comment2 ""
 Comment3 ""
 Comment4 ""
@@ -104,25 +104,14 @@ F 3 "" H 4800 6500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR44
-U 1 1 58CDDF2F
-P 7400 9850
-F 0 "#PWR44" H 4250 6750 50  0001 C CNN
-F 1 "GND" H 7405 9677 50  0000 C CNN
-F 2 "" H 4250 7000 50  0001 C CNN
-F 3 "" H 4250 7000 50  0001 C CNN
-	1    7400 9850
-	1    0    0    -1  
-$EndComp
-$Comp
 L GND #PWR43
 U 1 1 58CDE24D
-P 7250 5300
-F 0 "#PWR43" H 4100 2200 50  0001 C CNN
-F 1 "GND" H 7255 5127 50  0000 C CNN
-F 2 "" H 4100 2450 50  0001 C CNN
-F 3 "" H 4100 2450 50  0001 C CNN
-	1    7250 5300
+P 7250 5200
+F 0 "#PWR43" H 4100 2100 50  0001 C CNN
+F 1 "GND" H 7255 5027 50  0000 C CNN
+F 2 "" H 4100 2350 50  0001 C CNN
+F 3 "" H 4100 2350 50  0001 C CNN
+	1    7250 5200
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -825,50 +814,14 @@ Wire Wire Line
 	9900 8100 9250 8100
 Connection ~ 9250 8100
 Connection ~ 9900 7950
-$Comp
-L R_Pack08 RN2
-U 1 1 58C8CA22
-P 7000 9650
-F 0 "RN2" H 6520 9604 50  0000 R CNN
-F 1 "R_Pack08" H 6520 9695 50  0000 R CNN
-F 2 "Resistors_SMD:R_Array_Convex_8x0602" V 7475 9650 50  0001 C CNN
-F 3 "" H 7000 9650 50  0001 C CNN
-F 4 "?" H 7000 9650 60  0001 C CNN "PartNo"
-F 5 "?" H 7000 9650 60  0001 C CNN "Manufacturer"
-F 6 "9236236" H 7000 9650 60  0001 C CNN "Distributor"
-	1    7000 9650
-	-1   0    0    1   
-$EndComp
 Wire Wire Line
-	6700 9850 7400 9850
-Connection ~ 6800 9850
-Connection ~ 6900 9850
-Connection ~ 7000 9850
-Connection ~ 7100 9850
-Connection ~ 7200 9850
-Connection ~ 7300 9850
-$Comp
-L R_Pack08 RN1
-U 1 1 58C8A395
-P 6850 5100
-F 0 "RN1" H 6370 5054 50  0000 R CNN
-F 1 "R_Pack08" H 6370 5145 50  0000 R CNN
-F 2 "Resistors_SMD:R_Array_Convex_8x0602" V 7325 5100 50  0001 C CNN
-F 3 "" H 6850 5100 50  0001 C CNN
-F 4 "?" H 6850 5100 60  0001 C CNN "PartNo"
-F 5 "?" H 6850 5100 60  0001 C CNN "Manufacturer"
-F 6 "9236236" H 6850 5100 60  0001 C CNN "Distributor"
-	1    6850 5100
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	6550 5300 7250 5300
-Connection ~ 6650 5300
-Connection ~ 6750 5300
-Connection ~ 6850 5300
-Connection ~ 6950 5300
-Connection ~ 7050 5300
-Connection ~ 7150 5300
+	6550 5200 7250 5200
+Connection ~ 6650 5200
+Connection ~ 6750 5200
+Connection ~ 6850 5200
+Connection ~ 6950 5200
+Connection ~ 7050 5200
+Connection ~ 7150 5200
 $Comp
 L 74HC595_WITH_PWR U9
 U 1 1 58C9107B
@@ -922,4 +875,199 @@ Connection ~ 4950 7700
 Wire Wire Line
 	5800 7700 5800 8250
 Connection ~ 5150 7700
+$Comp
+L R R32
+U 1 1 58DC6344
+P 6550 5050
+F 0 "R32" V 6450 5050 50  0000 C CNN
+F 1 "R" V 6550 5050 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 3730 850 50  0001 C CNN
+F 3 "" H 3800 850 50  0001 C CNN
+	1    6550 5050
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R69
+U 1 1 58DC742E
+P 6650 5050
+F 0 "R69" V 6550 5050 50  0000 C CNN
+F 1 "R" V 6650 5050 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 3830 850 50  0001 C CNN
+F 3 "" H 3900 850 50  0001 C CNN
+	1    6650 5050
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R71
+U 1 1 58DC748A
+P 6750 5050
+F 0 "R71" V 6650 5050 50  0000 C CNN
+F 1 "R" V 6750 5050 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 3930 850 50  0001 C CNN
+F 3 "" H 4000 850 50  0001 C CNN
+	1    6750 5050
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R73
+U 1 1 58DC74E4
+P 6850 5050
+F 0 "R73" V 6750 5050 50  0000 C CNN
+F 1 "R" V 6850 5050 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 4030 850 50  0001 C CNN
+F 3 "" H 4100 850 50  0001 C CNN
+	1    6850 5050
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R75
+U 1 1 58DC7540
+P 6950 5050
+F 0 "R75" V 6850 5050 50  0000 C CNN
+F 1 "R" V 6950 5050 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 4130 850 50  0001 C CNN
+F 3 "" H 4200 850 50  0001 C CNN
+	1    6950 5050
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R77
+U 1 1 58DC759E
+P 7050 5050
+F 0 "R77" V 6950 5050 50  0000 C CNN
+F 1 "R" V 7050 5050 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 4230 850 50  0001 C CNN
+F 3 "" H 4300 850 50  0001 C CNN
+	1    7050 5050
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R79
+U 1 1 58DC7602
+P 7150 5050
+F 0 "R79" V 7050 5050 50  0000 C CNN
+F 1 "R" V 7150 5050 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 4330 850 50  0001 C CNN
+F 3 "" H 4400 850 50  0001 C CNN
+	1    7150 5050
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R81
+U 1 1 58DC7664
+P 7250 5050
+F 0 "R81" V 7150 5050 50  0000 C CNN
+F 1 "R" V 7250 5050 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 4430 850 50  0001 C CNN
+F 3 "" H 4500 850 50  0001 C CNN
+	1    7250 5050
+	-1   0    0    1   
+$EndComp
+$Comp
+L GND #PWR44
+U 1 1 58DC843C
+P 7400 9750
+F 0 "#PWR44" H 4250 6650 50  0001 C CNN
+F 1 "GND" H 7405 9577 50  0000 C CNN
+F 2 "" H 4250 6900 50  0001 C CNN
+F 3 "" H 4250 6900 50  0001 C CNN
+	1    7400 9750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6700 9750 7400 9750
+Connection ~ 6800 9750
+Connection ~ 6900 9750
+Connection ~ 7000 9750
+Connection ~ 7100 9750
+Connection ~ 7200 9750
+Connection ~ 7300 9750
+$Comp
+L R R70
+U 1 1 58DC8449
+P 6700 9600
+F 0 "R70" V 6600 9600 50  0000 C CNN
+F 1 "R" V 6700 9600 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 3880 5400 50  0001 C CNN
+F 3 "" H 3950 5400 50  0001 C CNN
+	1    6700 9600
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R72
+U 1 1 58DC844F
+P 6800 9600
+F 0 "R72" V 6700 9600 50  0000 C CNN
+F 1 "R" V 6800 9600 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 3980 5400 50  0001 C CNN
+F 3 "" H 4050 5400 50  0001 C CNN
+	1    6800 9600
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R74
+U 1 1 58DC8455
+P 6900 9600
+F 0 "R74" V 6800 9600 50  0000 C CNN
+F 1 "R" V 6900 9600 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 4080 5400 50  0001 C CNN
+F 3 "" H 4150 5400 50  0001 C CNN
+	1    6900 9600
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R76
+U 1 1 58DC845B
+P 7000 9600
+F 0 "R76" V 6900 9600 50  0000 C CNN
+F 1 "R" V 7000 9600 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 4180 5400 50  0001 C CNN
+F 3 "" H 4250 5400 50  0001 C CNN
+	1    7000 9600
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R78
+U 1 1 58DC8461
+P 7100 9600
+F 0 "R78" V 7000 9600 50  0000 C CNN
+F 1 "R" V 7100 9600 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 4280 5400 50  0001 C CNN
+F 3 "" H 4350 5400 50  0001 C CNN
+	1    7100 9600
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R80
+U 1 1 58DC8467
+P 7200 9600
+F 0 "R80" V 7100 9600 50  0000 C CNN
+F 1 "R" V 7200 9600 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 4380 5400 50  0001 C CNN
+F 3 "" H 4450 5400 50  0001 C CNN
+	1    7200 9600
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R82
+U 1 1 58DC846D
+P 7300 9600
+F 0 "R82" V 7200 9600 50  0000 C CNN
+F 1 "R" V 7300 9600 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 4480 5400 50  0001 C CNN
+F 3 "" H 4550 5400 50  0001 C CNN
+	1    7300 9600
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R83
+U 1 1 58DC8473
+P 7400 9600
+F 0 "R83" V 7300 9600 50  0000 C CNN
+F 1 "R" V 7400 9600 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 4580 5400 50  0001 C CNN
+F 3 "" H 4650 5400 50  0001 C CNN
+	1    7400 9600
+	-1   0    0    1   
+$EndComp
 $EndSCHEMATC

@@ -36,11 +36,11 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 4 10
-Title "Digital soil moisture sensor"
-Date "Tue 17 Feb 2015"
-Rev ""
-Comp "Catnip electronics"
-Comment1 "by Albertas Mickėnas mic@wemakethings.net"
+Title "Smalsiukas - Toyota lifter hack"
+Date "2017-04-01"
+Rev "Rev1"
+Comp "TECHNARIUM"
+Comment1 "Albertas Mickėnas"
 Comment2 ""
 Comment3 ""
 Comment4 ""
@@ -130,7 +130,7 @@ Wire Wire Line
 Wire Wire Line
 	8100 3450 8100 3300
 $Comp
-L Q_NMOS_GDS Q8
+L Q_PMOS_GDS Q8
 U 1 1 58C97575
 P 4550 3550
 F 0 "Q8" V 4878 3550 50  0000 C CNN

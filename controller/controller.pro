@@ -1,4 +1,4 @@
-update=Tue 14 Mar 2017 02:12:07 PM EET
+update=Sat 01 Apr 2017 01:58:43 PM EEST
 version=1
 last_client=kicad
 [pcbnew]
@@ -60,3 +60,13 @@ LibName28=contrib
 LibName29=valves
 LibName30=/home/miceuz/kicad/libraries/mic-parts
 LibName31=/home/miceuz/Xaltura/smalsiukas/shield_arduino
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=
+SpiceAjustPassiveValues=0
+LabSize=60
+ERC_TestSimilarLabels=1

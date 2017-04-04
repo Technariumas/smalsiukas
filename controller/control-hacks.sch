@@ -36,11 +36,11 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 9 10
-Title ""
-Date ""
-Rev ""
-Comp ""
-Comment1 ""
+Title "Smalsiukas - Toyota lifter hack"
+Date "2017-04-01"
+Rev "Rev1"
+Comp "TECHNARIUM"
+Comment1 "Albertas Mickėnas"
 Comment2 ""
 Comment3 ""
 Comment4 ""

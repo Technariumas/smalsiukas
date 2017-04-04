@@ -36,11 +36,11 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 8 10
-Title ""
-Date ""
-Rev ""
-Comp ""
-Comment1 ""
+Title "Smalsiukas - Toyota lifter hack"
+Date "2017-04-01"
+Rev "Rev1"
+Comp "TECHNARIUM"
+Comment1 "Albertas Mickėnas"
 Comment2 ""
 Comment3 ""
 Comment4 ""
@@ -134,9 +134,9 @@ F 0 "U7" H 4550 1650 50  0000 L CNN
 F 1 "SN74AHCT1G14DBVR" H 4300 1300 50  0000 L CNN
 F 2 "TO_SOT_Packages_SMD:SOT-23-5_HandSoldering" H -350 -1300 50  0001 C CNN
 F 3 "" H -350 -1300 50  0001 C CNN
-F 4 "SN74AHCT1G14DBVR" H 4800 1500 60  0001 C CNN "PartNo"
+F 4 "SN74LVC1G14DBVR" H 4800 1500 60  0001 C CNN "PartNo"
 F 5 "TEXAS INSTRUMENTS" H 4800 1500 60  0001 C CNN "Manufacturer"
-F 6 "1105925" H 4800 1500 60  0001 C CNN "Distributor"
+F 6 "1470878" H 4800 1500 60  0001 C CNN "Distributor"
 	1    4800 1500
 	1    0    0    -1  
 $EndComp
