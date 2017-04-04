@@ -5,16 +5,17 @@
 
 #include <AccelStepper.h>
 
-#define MAX_SPEED 500
+#define MAX_SPEED 3000
 #define ACCELERATION 3000
 
-#define WHEEL_MID_POS 563
-#define MAX_BACKLASH 50 
+#define WHEEL_MID_POS 600
+#define MAX_BACKLASH 5000 
 
 /*
-	int(1 / 1.8 * 1024)
+perdavimas 72 prie 22
+int(1 / 1.8 * 2 * (72 / 22) * 1024)
 */
-#define STEPS_PER_DEGREE 569
+#define STEPS_PER_DEGREE 3724
 
 
 uint16_t backlash;
@@ -32,28 +33,78 @@ uint8_t isNoFeedback() {
 	return noFeedback;
 }
 
-void calibrate() {
-	stepper.move(-50);
+uint16_t getWheelPosition() {
+	uint32_t sum = 0;
+	for(int i=0; i < 16; i++) {
+		uint16_t positionAnalog = analogRead(WHEEL_POS_ANALOG);
+		sum = sum + positionAnalog;
+	}
+	return (uint16_t) (sum >> 4);
+}
+
+uint16_t getBacklash() {
+	// Serial.print("Calibrate from: ");
+	// Serial.println(getWheelPosition());
+
+	stepper.setSpeed(1000);
+	stepper.setAcceleration(2000);
+
+	stepper.move(-600);
 	stepper.runToPosition();
-	uint16_t positionAnalog = analogRead(WHEEL_POS_ANALOG);
+//	delay(500);
+
+	uint16_t positionAnalog = getWheelPosition();
+	uint16_t wheelPos = positionAnalog;
+		
 	stepper.setCurrentPosition(0);
-	stepper.setSpeed(1);
 	noFeedback = 0;
-	while(abs(positionAnalog - analogRead(WHEEL_POS_ANALOG)) < 2) {
-		stepper.runSpeed();
+
+	stepper.moveTo(600);
+
+	while(abs((int)wheelPos - (int)positionAnalog) < 10) {
+	
+		stepper.run();
+	
+		wheelPos = getWheelPosition();
+
+		// Serial.print(wheelPos);
+		// Serial.print(" ");
+		// Serial.print(abs((int)wheelPos - (int)positionAnalog));
+		// Serial.print(" ");
+
+		// Serial.print(stepper.currentPosition());
+		// Serial.println();
+
 		if(stepper.currentPosition() > MAX_BACKLASH) {
 			noFeedback = 1;
 			return;
 		}
 	}
-	backlash = abs(stepper.currentPosition());
-	if(analogRead(WHEEL_POS_ANALOG) > WHEEL_MID_POS) {
-		stepper.setSpeed(-10);
+	uint16_t b = abs(stepper.currentPosition());
+	stepper.runToPosition();
+	return b;
+}
+
+void calibrate() {
+	uint32_t sum = 0;
+	for(int i = 0; i < 8; i++) {
+		uint16_t b = getBacklash();
+		sum = sum + b;
+		Serial.print("Backlash "); 
+		Serial.println(b);
+//		delay(500);
+	}
+	backlash = sum >> 1;
+}
+
+void steeringToCenter() {
+	if(getWheelPosition() > WHEEL_MID_POS) {
+		stepper.setSpeed(-1000);
 	} else {
-		stepper.setSpeed(10);
+		stepper.setSpeed(1000);
 	}
 
-	while(abs(WHEEL_MID_POS - analogRead(WHEEL_POS_ANALOG)) < 2) {
+	while(abs((int)WHEEL_MID_POS - (int)getWheelPosition()) > 2) {
 		stepper.runSpeed();
 	}
 	stepper.setCurrentPosition(0);
@@ -71,9 +122,17 @@ void steeringInit() {
 	stepper.setEnablePin(STEERING_ENABLE);
 	stepper.setMaxSpeed(MAX_SPEED);
 	stepper.setAcceleration(ACCELERATION);
+	stepper.setPinsInverted(1, 0, 0);
 	steeringEnable();
-	//calibrate();
+
+	steeringToCenter();
+	calibrate();
+	steeringToCenter();
+
+	stepper.setMaxSpeed(MAX_SPEED);
+	stepper.setAcceleration(ACCELERATION);
 }
+
 
 
 uint8_t isSteeringFault() {
@@ -98,19 +157,19 @@ int16_t compensateBacklash(int16_t positionToGo) {
  */
 void steeringSetAngle(int16_t angle) {
 	int16_t positionToGo = angleToPosition(angle);
-	Serial.print("going to ");
-	Serial.println(positionToGo);
+	// Serial.print("going to ");
+	// Serial.println(positionToGo);
 
 	if(nextPositionScheduled) {
-		Serial.println("next time baby");
+		// Serial.println("next time baby");
 		nextPosition = positionToGo;
 	} else if(stepper.isRunning()) {
-		Serial.println("stopping...");
+		// Serial.println("stopping...");
 		stepper.stop();
 		nextPosition = positionToGo;
 		nextPositionScheduled = 1;
 	} else {
-		Serial.println("going there no questions");
+		// Serial.println("going there no questions");
 		stepper.moveTo(compensateBacklash(positionToGo));
 	}
 }
@@ -122,6 +181,8 @@ uint8_t steeringIsMoveDone() {
 void steeringRun() {
 	stepper.run();
 	if(!stepper.isRunning() && nextPositionScheduled) {
+		// Serial.print("running to next");
+		// Serial.println(nextPosition);
 		stepper.moveTo(compensateBacklash(nextPosition));
 		nextPositionScheduled = 0;
 	}

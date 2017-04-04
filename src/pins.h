@@ -7,8 +7,8 @@
 #define STEERING_DIR 				5
 #define STEERING_STEP 				6
 #define STEERING_ENABLE 			7
-#define LINEAR_ACTUATOR_DIRECTION 	8
-#define LINEAR_ACTUATOR_ENABLE 		9
+#define LINEAR_ACTUATOR_DIRECTION 	9
+#define LINEAR_ACTUATOR_ENABLE 		8
 #define SPI_LATCH 					10
 #define SPI_DATA 					11
 #define RANGEFINDER_WARNING 		12
@@ -40,7 +40,7 @@ void pinsInit() {
 	pinMode(RANGEFINDER_WARNING 		, INPUT);
 	pinMode(GAZ_SPEED1 					, OUTPUT);
 	pinMode(GAZ_SPEED2 					, OUTPUT);
-	pinMode(GAZ_SPEED3 					, OUTPUT);
+	pinMode(GAZ_SPEED3 					, INPUT_PULLUP);
 	pinMode(GAZ_ENABLE 					, OUTPUT);
 	pinMode(KEY_ENABLE 					, OUTPUT);
 

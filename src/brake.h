@@ -14,7 +14,7 @@ typedef enum {
 	ERROR_UNABLE_TO_STOP
 } Error_t;
 
-#define START_TIMEOUT 1000;
+#define START_TIMEOUT 2000;
 #define ACTUATION_TIMEOUT 5000;
 #define MIN_MOVING_CURRENT 10;
 
@@ -28,9 +28,9 @@ uint8_t isEmergencyBrakeProblem() {
 
 void setDirection(Direction_t direction) {
 	if(DIRECTION_OUT == direction) {
-		digitalWrite(LINEAR_ACTUATOR_DIRECTION, HIGH);
-	} else if(DIRECTION_IN == direction) {
 		digitalWrite(LINEAR_ACTUATOR_DIRECTION, LOW);
+	} else if(DIRECTION_IN == direction) {
+		digitalWrite(LINEAR_ACTUATOR_DIRECTION, HIGH);
 	}
 }
 
@@ -84,6 +84,7 @@ void actuate(Direction_t direction) {
 	}
 
 	if(isStartTimeout()) {
+		Serial.println("Start timeout");
 		setError(ERROR_UNABLE_TO_START);
 	}
 	
@@ -92,6 +93,7 @@ void actuate(Direction_t direction) {
 	}
 
 	if(isActivationTimeout()) {
+		Serial.println("ERROR_UNABLE_TO_STOP");
 		setError(ERROR_UNABLE_TO_STOP);
 	}	
 
@@ -101,20 +103,22 @@ void actuate(Direction_t direction) {
 
 void brakeEmergencyRelease() {
 	clearError();
+	Serial.println("release magnet");
 	magnetDisengage();
-
-	actuate(DIRECTION_IN);
-	//įsitikinam, kad aktuatorius yra sutrauktas, todėl ignoruojam klaidas
+	delay(100);
+	Serial.println("push out");
+	actuate(DIRECTION_OUT);
+	//įsitikinam, kad aktuatorius yra išstumtas, todėl ignoruojam klaidas
 	if(ERROR_UNABLE_TO_START == error) {
 		clearError();  
 	}
 
-	actuate(DIRECTION_OUT);
-
-	if(!isEmergencyBrakeProblem()) {
-		magnetEngage();
-		actuate(DIRECTION_IN);
-	}
+	Serial.println("magnet engage");
+	magnetEngage();
+	delay(1000);
+	Serial.println("push in");
+	actuate(DIRECTION_IN);
+	delay(5000);
 }
 
 #endif
