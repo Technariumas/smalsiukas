@@ -3,13 +3,7 @@
 #include "brake.h"
 #include "line_follower.h"
 #include "steering.h"
-
-void setup() {
-	pinsInit();
-	controlAllOff();
-	Serial.begin(115200);
-	steeringInit();
-}
+#include "Bounce2.h"
 
 void testAllOutputs() {
 	magnetEngage();
@@ -116,15 +110,138 @@ void serialTest() {
 	}
 }
 
+
+//int angle[] ={9000, -9000};
+int i = 0;
+uint32_t lastMoveTs = 0;
+
+void testHBridge() {
+	setDirection(DIRECTION_OUT);
+	actuatorEnable();
+
+	lastMoveTs = millis();
+	while(millis() - lastMoveTs < 4000) {
+		Serial.println(analogRead(HBRIDGE_CURRENT_ANALOG));
+	}
+
+	setDirection(DIRECTION_OUT);
+	actuatorDisable();
+
+	delay(4000);
+
+	setDirection(DIRECTION_IN);
+	actuatorEnable();
+
+	lastMoveTs = millis();
+	while(millis() - lastMoveTs < 4000) {
+		Serial.println(analogRead(HBRIDGE_CURRENT_ANALOG));
+	}
+
+	actuatorDisable();
+	delay(4000);
+
+}
+
+Bounce button = Bounce();
+
+uint16_t maxCurrent = 0;
+
+void setup() {
+	pinsInit();
+	
+	button.attach(GAZ_SPEED3);
+	button.interval(100);
+
+	controlAllOff();
+	Serial.begin(115200);
+
+	keyOn();
+	controlTakeover();
+	delay(5000);
+	hornOn();
+	delay(50);
+	hornOff();
+
+	// lightsOn();
+	// mirgalkeOn();
+	// auxOn();
+	// delay(1000);
+	// auxOff();
+	// lightsOff();
+	// mirgalkeOff();
+
+	parkingOff();
+	directionForwardOn();
+	setSpeed(SPEED0);
+	gasEnable();
+	delay(1000);
+	steeringInit();
+	delay(5000);
+
+	// steeringDisable();
+}
+
 int angle = 900;
 
+int dir = DIRECTION_OUT;
+
+
+
 void loop() {
-	if(steeringIsMoveDone()) {
-		steeringSetAngle(angle);
-		angle = -angle;
+
+//	Serial.println(getWheelPosition());
+	uint16_t curr = analogRead(HBRIDGE_CURRENT_ANALOG);
+	Serial.println(curr);
+	
+	if(curr > maxCurrent) {
+		maxCurrent = curr;
 	}
-//	testAllOutputs();
-//  serialTest();
-//	delay(1000);
+
+	if(button.fell()) {
+		// hornOn();
+		// delay(50);
+		// hornOff();
+
+
+		if(DIRECTION_OUT == dir) {
+			dir = DIRECTION_IN;
+			brakeEmergencyRelease();
+		} else {
+			dir = DIRECTION_OUT;
+			magnetDisengage();
+		}
+
+	}
+
+
+	if(steeringIsMoveDone()) {
+		angle = angle * -1;
+		steeringSetAngle(angle);
+		delay(1000);
+	}
+
+	// directionForwardOn();
+	// delay(1000);
+	// setSpeed(SPEED1);
+	// parkingOff();
+	// gasEnable();
+	// delay(15000);
+	// setSpeed(SPEED0);
+	// delay(15000);
+	// directionBackwardOn();
+	// setSpeed(SPEED1);
+	// delay(15000);
+	// setSpeed(SPEED0);
+	// parkingOn();
+	// delay(15000);
+
+	// gasDisable();
+	// delay(2000);
+
+	// parkingOff();
+	// delay(1000);
+	// parkingOn();
+
 	steeringRun();
+	button.update();
 }
