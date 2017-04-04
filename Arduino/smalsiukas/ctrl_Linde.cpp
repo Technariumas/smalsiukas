@@ -94,7 +94,7 @@ CtrlLinde::sendControl();
 }
 
 // set movement direction. Set 0 to stop
-void CtrlLinde::Direction(short state) {
+void CtrlLinde::setDirection(short state) {
 	if (state == 0 ) { // STOP state
 		control = control & ~CTRL_DIR_FWD;
 		control = control & ~CTRL_DIR_BACK;
@@ -116,7 +116,7 @@ void CtrlLinde::Direction(short state) {
 
 
 void CtrlLinde::Speed(Speed_t speed){
-if (canMove) {
+if (CtrlLinde::isReady()) {
 	if (_direction == 0 ) { // stop
 		digitalWrite(GAZ_SPEED2, LOW);
 		digitalWrite(GAZ_SPEED1, LOW);
@@ -143,5 +143,74 @@ if (canMove) {
 		digitalWrite(GAZ_SPEED3, LOW);
 		digitalWrite(GAZ_SPEED1, HIGH); 
 	}
+ CtrlLinde::setMoving(1); // car is moving
 }	
 }
+
+// state functions
+  short CtrlLinde::getDirection(void) { // get car's direction
+    return _direction;
+    };
+  
+  bool CtrlLinde::isReady(void) { // car is ready for movements
+    return (carState & 0x01);
+    };
+    
+  bool CtrlLinde::isMoving(void) { // car is moving
+    return (carState & 0x02);
+    };
+  
+  bool CtrlLinde::isLineCentered(void) { // line is centered
+    return (carState & 0x04);
+    };
+    
+  bool CtrlLinde::isLineLeft(void){ // line is on the left
+    return (carState & 0x08);
+    };
+  bool CtrlLinde::isPerimeterFault(void){
+    return (carState && 0x10);
+    };
+
+  void CtrlLinde::setReady(bool state) { // set car ready for movements
+    if (state){
+     carState |= 0x01;
+    } else {
+     carState &= ~0x01;
+    }
+  }
+    
+  void CtrlLinde::setMoving(bool state) { // set car moving
+    if (state){
+     carState |= 0x02;
+    } else {
+     carState &= ~0x02;
+    }
+  }
+    
+  void CtrlLinde::setLineCentered(bool state) { // set line is centered
+    if (state){
+     carState |= 0x04;
+    } else {
+     carState &= ~0x04;
+    }
+    }
+    
+  void CtrlLinde::setLineLeft(bool state) { // set line is left of  the car
+    if (state){
+     carState |= 0x08;
+     carState &= ~0x04; // line is not centered
+    } else {
+     carState &= ~0x08;
+     carState &= ~0x04; // line is not centered
+    }
+  }
+    
+  void CtrlLinde::setPerimeterFault(bool state) { // set perimeter fault
+    if (state){
+     carState |= 0x10; // set flag
+     carState &= ~0x01; // not ready to move
+     carState &= ~0x02; // unset MOVING flag
+    } else {
+     carState &= ~0x10; 
+    }
+  }

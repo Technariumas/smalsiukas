@@ -61,6 +61,16 @@ class Smalsiukas
 			SPEED2,
 			SPEED3
 			};
+  typedef enum state {
+      IDLING,
+      MOVING,
+      STEERING,
+      STOP,
+      };
+
+   state State;
+
+      
 	Smalsiukas(void); // constructor
   void Throttle(bool); // control throttle 
 	void MasterKey(bool); // master key controll
