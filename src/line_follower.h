@@ -6,15 +6,16 @@
 uint8_t line;
 uint32_t lastReadTS = 0;
 
-#define LINE_READ_INTERVAL 2
+#define LINE_READ_INTERVAL 50
 #define READ_REQ_TIMEOUT 5
+#define LINE_NOT_DETECTED 128
 
 int16_t getErrorAngle(uint8_t line) {
 	switch(line) {
 		case 0b10000000:
-			return -33;
+			return -66;
 		case 0b11000000:
-			return -30;
+			return -45;
 		case 0b01000000:
 			return -20;
 		case 0b01100000:
@@ -38,11 +39,19 @@ int16_t getErrorAngle(uint8_t line) {
 		case 0b00000010:
 			return 20;
 		case 0b00000011:
-			return 30;
+			return 45;
 		case 0b00000001:
-			return 33;
+			return 66;
 	}
-	return 128;
+	return LINE_NOT_DETECTED;
+}
+
+uint8_t isLineDetected(uint8_t line) {
+	return LINE_NOT_DETECTED != getErrorAngle(line);
+}
+
+uint8_t isLineCritical(uint8_t line) {
+	return 0b10000000 == line || 0b11000000 == line || 0b00000001 == line || 0b00000011 == line;
 }
 
 typedef enum {

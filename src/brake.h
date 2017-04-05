@@ -101,7 +101,7 @@ void actuate(Direction_t direction) {
 }
 
 
-void brakeEmergencyRelease() {
+void brakeEmergencyEngage() {
 	clearError();
 	Serial.println("release magnet");
 	magnetDisengage();
@@ -115,10 +115,13 @@ void brakeEmergencyRelease() {
 
 	Serial.println("magnet engage");
 	magnetEngage();
-	delay(1000);
+	delay(100);
 	Serial.println("push in");
 	actuate(DIRECTION_IN);
-	delay(5000);
+}
+
+void brakeEmergencyRelease() {
+	actuate(DIRECTION_OUT);
 }
 
 #endif

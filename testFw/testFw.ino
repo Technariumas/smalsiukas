@@ -146,24 +146,33 @@ Bounce button = Bounce();
 
 uint16_t maxCurrent = 0;
 
+void beep() {
+	hornOn();
+	delay(50);
+	hornOff();
+}
+
+void beeep() {
+	hornOn();
+	delay(500);
+	hornOff();
+}
+
 void setup() {
+	Serial.begin(115200);
+
 	pinsInit();
 	
 	button.attach(GAZ_SPEED3);
 	button.interval(100);
 
 	controlAllOff();
-	Serial.begin(115200);
-
 	keyOn();
 	controlTakeover();
 	delay(5000);
-	hornOn();
-	delay(50);
-	hornOff();
-
+	beep();
 	// lightsOn();
-	// mirgalkeOn();
+	mirgalkeOn();
 	// auxOn();
 	// delay(1000);
 	// auxOff();
@@ -174,51 +183,126 @@ void setup() {
 	directionForwardOn();
 	setSpeed(SPEED0);
 	gasEnable();
-	delay(1000);
-	steeringInit();
-	delay(5000);
+	delay(1000);//allow hydraulic pump to start
 
-	// steeringDisable();
+	steeringInit();
+	
+	directionOff();
+	gasDisable();
+	parkingOn();
+
+//	brakeEmergencyRelease();
+//	steeringDisable();
 }
 
-int angle = 900;
+typedef enum{
+	STATE_STOP,
+	STATE_FOLLOWING,
+	STATE_ERROR
+} SmalsiukasState_t;
 
-int dir = DIRECTION_OUT;
+SmalsiukasState_t smalsiukasState = STATE_STOP;
+uint8_t lastLine = 0;
 
+void stop() {
+	gasDisable();
+	setSpeed(SPEED0);
+	directionOff();
+	parkingOn();
+}
 
+void go() {
+	setSpeed(SPEED0);
+	directionForwardOn();
+	gasEnable();
+	delay(500);
+	parkingOff();
+	setSpeed(SPEED1);
+}
+
+void hydraulicsOn() {
+	setSpeed(SPEED0);
+	directionBackwardOn();
+	parkingOn();
+	gasEnable();
+	delay(500);
+}
+
+void hydraulicsOff() {
+	gasDisable();	
+	directionOff();
+}
+
+void followTheLine() {
+	switch (smalsiukasState) {
+		case STATE_STOP:
+			if(button.fell()) {
+				go();
+				smalsiukasState = STATE_FOLLOWING;
+				beep();
+			}
+			break;
+		case STATE_FOLLOWING:
+			if(isTimeToSteer()){
+				if(isLineAvailable()) {
+					uint8_t l = getLine();
+					if(isLineDetected(l)) {
+						if(l != lastLine) {
+							if(isLineCritical(l)) {
+								setSpeed(SPEED0);
+							} else {
+								setSpeed(SPEED1);
+							}
+							int16_t steer = getErrorAngle(line) * -1 * 100;
+							Serial.println(steer);
+							steeringSetAngle(steer);
+							lastLine = l;
+						}
+						mirgalkeOff();
+					} else {
+						if(0 == l) {
+							stop();
+							smalsiukasState = STATE_STOP;
+						}
+					}
+				} else if(isRequestTimeout()){
+					Serial.print('T');
+					delay(100);
+				} else if(isChecksumError()){
+					Serial.println('!');
+					delay(100);
+				} else {
+					mirgalkeOn();
+				}
+			}
+
+			if(button.fell()) {
+				stop();
+				smalsiukasState = STATE_STOP;
+			}			
+			
+			break;
+		case STATE_ERROR:
+			break;
+	}
+}
+
+int16_t angle = 3600;
 
 void loop() {
 
-//	Serial.println(getWheelPosition());
-	uint16_t curr = analogRead(HBRIDGE_CURRENT_ANALOG);
-	Serial.println(curr);
-	
-	if(curr > maxCurrent) {
-		maxCurrent = curr;
-	}
+	followTheLine();
 
-	if(button.fell()) {
-		// hornOn();
-		// delay(50);
-		// hornOff();
+	// if(button.fell()) {
+	// 	hydraulicsOn();
 
+	// 	steeringSetAngle(angle);
+	// 	angle = -angle;
+	// }
 
-		if(DIRECTION_OUT == dir) {
-			dir = DIRECTION_IN;
-			brakeEmergencyRelease();
-		} else {
-			dir = DIRECTION_OUT;
-			magnetDisengage();
-		}
-
-	}
-
-
-	if(steeringIsMoveDone()) {
-		angle = angle * -1;
-		steeringSetAngle(angle);
-		delay(1000);
-	}
+	// if(steeringIsMoveDone()) {
+	// 	hydraulicsOff();
+	// }
 
 	// directionForwardOn();
 	// delay(1000);

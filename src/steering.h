@@ -6,7 +6,7 @@
 #include <AccelStepper.h>
 
 #define MAX_SPEED 3000
-#define ACCELERATION 3000
+#define ACCELERATION 9000
 
 #define WHEEL_MID_POS 600
 #define MAX_BACKLASH 5000 
@@ -18,7 +18,7 @@ int(1 / 1.8 * 2 * (72 / 22) * 1024)
 #define STEPS_PER_DEGREE 3724
 
 
-uint16_t backlash;
+uint16_t backlash = 175;
 uint8_t noFeedback = 0;
 uint16_t nextPosition = 0;
 uint8_t nextPositionScheduled = 0;
@@ -126,8 +126,8 @@ void steeringInit() {
 	steeringEnable();
 
 	steeringToCenter();
-	calibrate();
-	steeringToCenter();
+	// calibrate();
+	// steeringToCenter();
 
 	stepper.setMaxSpeed(MAX_SPEED);
 	stepper.setAcceleration(ACCELERATION);
@@ -144,12 +144,13 @@ int16_t angleToPosition(int16_t angle) {
 }
 
 int16_t compensateBacklash(int16_t positionToGo) {
-	if(positionToGo > stepper.currentPosition() && AccelStepper::DIRECTION_CCW == stepper.getDirection()) {
-		positionToGo += backlash;
-	} else if(positionToGo < stepper.currentPosition() && AccelStepper::DIRECTION_CW == stepper.getDirection()) {
-		positionToGo -= backlash;
-	}
 	return positionToGo;
+	// if(positionToGo > stepper.currentPosition() && AccelStepper::DIRECTION_CCW == stepper.getDirection()) {
+	// 	positionToGo += backlash;
+	// } else if(positionToGo < stepper.currentPosition() && AccelStepper::DIRECTION_CW == stepper.getDirection()) {
+	// 	positionToGo -= backlash;
+	// }
+	// return positionToGo;
 }
 
 /**
