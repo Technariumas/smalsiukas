@@ -17,9 +17,11 @@ class CtrlLinde : public Smalsiukas
   void Controll(bool); // set /release controll to Arduino board
   
   void Speed(Speed_t); // set movement speed
+  void Speed(uint8_t); // set movement speed
   
   void setDirection(short); // set movement direction. Set 0 to stop
   short getDirection(void); // get movement direction
+  void reverseDirection(void); // reverse movement direction
   
   // I/O operations
   void Aux(bool); // enable / disable AUX output
