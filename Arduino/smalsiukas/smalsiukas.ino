@@ -5,16 +5,17 @@
 //use Linde interface
 #define LINDE 1
 
-#define TEST_MODE_0 1 // speed test mode
+//#define TEST_MODE_0 1 // speed test mode
 //#define TEST_MODE_1 1 // speed test mode
-// #define TEST_MODE_2 1 // steering mode
+ #define TEST_MODE_2 1 // steering mode
 // #define TEST_MODE_3 1 // line following mode
 
 
 //#define _Baudrate 115200
 
+#define T_DEBOUNCE 10
 
-//#define EEPROM_INIT 1
+#define EEPROM_INIT 1
 
 #include <SerialCommand.h>
 
@@ -24,6 +25,9 @@
 
 #include "LineSensor.h"
 
+
+#include <Bounce2.h>
+Bounce debouncTrig = Bounce();
 
 
 // ----- Data structures ------
@@ -48,7 +52,7 @@ struct LineState {
   unsigned short Right; // right side of sensor, BCD
   bool Straight; // straight on the line, both sensors read the same values
   bool offLine; // off-the-line, both sensors readd 0x00;
-  };
+  
 
 
 // ------ Variables -----
@@ -58,14 +62,15 @@ struct LineState {
 volatile unsigned long tRunning;
 #endif
 
-#ifdef TEST_MODE_1
-unsigned short i;
+#ifdef TEST_MODE_2
+short i;
+volatile unsigned long tRunning;
 #endif
 
 
 Info deviceInfo;
 Device device;
-LineState lineState;
+//LineState lineState;
 
 unsigned short turnFactor[] = {0, 0, 1, 1, 2, 3, 4, 5}; // turn factor index, zero-based
 
@@ -78,7 +83,7 @@ SerialCommand sCmd;     // The SerialCommand object
 
 // init steering and car
 #ifdef LINDE
-SteeringPot steeringWheel(SteeringPin);
+SteeringPot steeringWheel(SteeringPin, SteeringPinRev);
 CtrlLinde Car;
 //Car.canMove = 0; //Car is unable to move right now
 #endif
@@ -250,11 +255,12 @@ void setup() {
   device.tMaxSteering1 = 500; // max steering time in usecs in turning mode
   device.tMaxSteering2 = 500; // max steering time in usecs in straight mode
   device.SteeringUnit = 1; // steering unit value as unit8
-  device.tRun = 2048;
+  device.tRun = 4096;
   device.lineMaxUpdateTime = 200; // update lline position every 200 usecs
   
   deviceInfo.signature = 68; // the signature of the Thing
   deviceInfo.baudrate = 9600; 
+  //deviceInfo.baudrate = 115200; 
 
   // write timings to EEPROM 
   EEPROM.put(eeAddress, deviceInfo);
@@ -292,6 +298,9 @@ eeAddress = 0;
       Serial.println(F(" ms"));
     }
 
+pinMode(BTN_START, INPUT);
+  debouncTrig.attach(BTN_START);
+  debouncTrig.interval(T_DEBOUNCE);
 
   // set up car
   Car.Beacon(1);
@@ -363,9 +372,22 @@ eeAddress = 0;
 
 
 void loop() {
+  if (debouncTrig.update()){
+    if ( debouncTrig.read()) {
+      bool tmp = Car.isReady();
+      Car.setReady(!tmp); // trigger start condition
+     if (tmp){
+     Serial.print(F("[STARTBTN]: stopping at "));
+     } else {
+        Serial.print(F("[STARTBTN]: starting at "));
+     }
+        Serial.print(millis());
+      Serial.print(F(" ms ("));
+    }
+  }
   
   #ifdef TEST_MODE_0
-  Car.setReady(1);
+  //Car.setReady(1);
   steeringWheel.turn(0); // set wheels straight
   Car.Speed(0); // stop it
   
@@ -373,7 +395,7 @@ void loop() {
 
   
   #ifdef TEST_MODE_1
-  Car.setReady(1);
+  //Car.setReady(1);
   steeringWheel.turn(0); // set wheels straight
   unsigned long t = millis();
   long tDiff = t - tRunning - device.tRun;
@@ -387,6 +409,7 @@ void loop() {
       Serial.println(tDiff);  
   } else {
     Car.Speed(0); // stop it
+    delay(1000);
     Car.reverseDirection(); //reverse direction, preserve angle
     Car.Speed(1); // run at speed 1
     
@@ -401,14 +424,24 @@ void loop() {
   #endif
 
   #ifdef TEST_MODE_2
-  if ((tRunning - millis()) > device.tRun ) {
-    i=i>10?-10:i++
+  //Car.setReady(1);
+  if (Car.canMove) {
+  unsigned long t = millis();
+  long tDiff = t - tRunning - device.tRun;
+  if (tDiff > 0) {
+    if (i>9) {
+      i=-10;
+    } else {
+      i++;
+    }
     steeringWheel.turn(i*10);
     tRunning = millis();
     Serial.print(F("[TEST 2]: wheel angle "));
       Serial.print(i*10);
       Serial.print(F(" at "));
+      Serial.print(t);
       Serial.println(F(" us"));
+  }
   }
   #endif
 
