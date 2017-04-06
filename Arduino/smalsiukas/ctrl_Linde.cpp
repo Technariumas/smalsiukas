@@ -3,6 +3,15 @@
 
 
 // enable or disable throttle
+void CtrlLinde::Controll(bool state) {
+  if (state) {
+    digitalWrite(TAKEOVER, HIGH);
+  } else {
+    digitalWrite(TAKEOVER, LOW);
+  }
+}
+
+// enable or disable throttle
 void CtrlLinde::Throttle(bool state) {
 	if (state) {
 		digitalWrite(GAZ_ENABLE, HIGH);
@@ -115,38 +124,32 @@ void CtrlLinde::setDirection(short state) {
 }
 
 
-void CtrlLinde::Speed(Speed_t speed){
+void CtrlLinde::Speed(uint8_t speed){
 if (CtrlLinde::isReady()) {
 	if (_direction == 0 ) { // stop
 		digitalWrite(GAZ_SPEED2, LOW);
 		digitalWrite(GAZ_SPEED1, LOW);
-		digitalWrite(GAZ_SPEED3, LOW);
+    CtrlLinde::Throttle(0); //disable the throttle button
+    CtrlLinde::setMoving(0); // car is stopped
 	}
 	
-	if (speed == SPEED3) {
-		speed = SPEED1;
-		_direction = -1;
-	}
-	
-	if (speed == SPEED2) {
-		_direction = 1;
-		digitalWrite(GAZ_SPEED1, LOW);
-		digitalWrite(GAZ_SPEED3, LOW);
-		digitalWrite(GAZ_SPEED2, HIGH); // forward on speed 2
-		}
 	if (_direction < 0 ) { // back on speed 1
-		digitalWrite(GAZ_SPEED2, LOW);
+    CtrlLinde::Throttle(1); // enable the throttle button
 		digitalWrite(GAZ_SPEED1, LOW);
-		digitalWrite(GAZ_SPEED3, HIGH);
+		digitalWrite(GAZ_SPEED2, HIGH);
+   CtrlLinde::setMoving(1); // car is moving
 	} else {	// forward on speed 1
+		CtrlLinde::Throttle(1); // enable the throttle button
 		digitalWrite(GAZ_SPEED2, LOW);
-		digitalWrite(GAZ_SPEED3, LOW);
 		digitalWrite(GAZ_SPEED1, HIGH); 
+    CtrlLinde::setMoving(1); // car is moving
 	}
- CtrlLinde::setMoving(1); // car is moving
-}	
+ }	
 }
 
+  void CtrlLinde::reverseDirection(void) { // reverse car's direction
+    _direction = 0-_direction;
+    };
 // state functions
   short CtrlLinde::getDirection(void) { // get car's direction
     return _direction;

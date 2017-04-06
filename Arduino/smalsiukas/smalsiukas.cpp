@@ -78,5 +78,7 @@ void spiBitBang(unsigned char ctl) {
   }
 
   void Smalsiukas::sendControl(void) {
-  Smalsiukas::spiBitBang(control);
+   digitalWrite(SPI_LATCH, LOW);
+   shiftOut(SPI_DATA, SPI_CLK, MSBFIRST, control);  
+   digitalWrite(SPI_LATCH, HIGH);
 }

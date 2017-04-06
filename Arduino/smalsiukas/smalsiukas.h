@@ -85,8 +85,8 @@ class Smalsiukas
 	void Seat(bool); // enable / disable seat
 	void sendControl(void); // send controll string
 	
-	private:
-   spiBitBang(unsigned char); // bit-bang for SPI
+	//private:
+   //spiBitBang(unsigned char); // bit-bang for SPI
 };
 
 
