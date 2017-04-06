@@ -6,7 +6,7 @@
 #include <AccelStepper.h>
 
 #define MAX_SPEED 3000
-#define ACCELERATION 9000
+#define ACCELERATION 7000
 
 #define WHEEL_MID_POS 600
 #define MAX_BACKLASH 5000 
@@ -123,9 +123,8 @@ void steeringInit() {
 	stepper.setMaxSpeed(MAX_SPEED);
 	stepper.setAcceleration(ACCELERATION);
 	stepper.setPinsInverted(1, 0, 0);
-	steeringEnable();
 
-	steeringToCenter();
+	// steeringToCenter();
 	// calibrate();
 	// steeringToCenter();
 
@@ -144,13 +143,13 @@ int16_t angleToPosition(int16_t angle) {
 }
 
 int16_t compensateBacklash(int16_t positionToGo) {
+//	return positionToGo;
+	if(positionToGo > stepper.currentPosition() && AccelStepper::DIRECTION_CCW == stepper.getDirection()) {
+		positionToGo += backlash;
+	} else if(positionToGo < stepper.currentPosition() && AccelStepper::DIRECTION_CW == stepper.getDirection()) {
+		positionToGo -= backlash;
+	}
 	return positionToGo;
-	// if(positionToGo > stepper.currentPosition() && AccelStepper::DIRECTION_CCW == stepper.getDirection()) {
-	// 	positionToGo += backlash;
-	// } else if(positionToGo < stepper.currentPosition() && AccelStepper::DIRECTION_CW == stepper.getDirection()) {
-	// 	positionToGo -= backlash;
-	// }
-	// return positionToGo;
 }
 
 /**
@@ -173,6 +172,9 @@ void steeringSetAngle(int16_t angle) {
 		// Serial.println("going there no questions");
 		stepper.moveTo(compensateBacklash(positionToGo));
 	}
+
+//	stepper.moveTo(compensateBacklash(positionToGo));
+
 }
 
 uint8_t steeringIsMoveDone() {
@@ -187,5 +189,9 @@ void steeringRun() {
 		stepper.moveTo(compensateBacklash(nextPosition));
 		nextPositionScheduled = 0;
 	}
+}
+
+void steeringRunToPosition() {
+	stepper.runToPosition();
 }
 #endif

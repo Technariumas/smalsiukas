@@ -4,71 +4,80 @@
 #include "control.h"
 #include "brake.h"
 #include "steering.h"
+#include "line_follower.h"
 
 #define SYNC 1
 #define ASYNC 0
 
-#define ERROR_STEERING_DRIVER_FAULT 0
-#define ERROR_OBSTACLE 1
-#define ERROR_LINE_NOT_PRESENT 2
-#define LINE_NOT_RECOGNISED 3
-#define ERROR_STEERING 4
+#define LINE_SEEN_TIMEOUT 1000
 
-uint8_t startupSequence() {
-	if(isSteeringDriverFault()) {
-		return ERROR_STEERING_DRIVER_FAULT;
-	}
+typedef enum{
+	STATE_STOP,
+	STATE_FOLLOWING,
+	STATE_ERROR
+} SmalsiukasState_t;
 
-	checkForLine(SYNC);
-	if(!isLinePresent()){
-		return ERROR_LINE_NOT_PRESENT;
-	}
+SmalsiukasState_t smalsiukasState = STATE_STOP;
+uint8_t lastLine = 0;
 
-	if(!isLineRecognised()) {
-		return LINE_NOT_RECOGNISED;
-	}
-
-	checkForObstacle(SYNC);
-	if(isObstacleInRange()) {
-		return ERROR_OBSTACLE;
-	}
-
-	controlAllOff();
-	controlTakeover();
-
-	steeringInit();
-	if(isSteeringFault()) {
-		return ERROR_STEERING;
-	}
-	steeringDisable();
-
-	brakeEmergencyRelease();
-	if(isEmergencyBrakeProblem()) {
-		return EMERGENCY_BRAKE_PROBLEM;
-	}
-
-	//TODO : gražinant klaidą nepalikti smalsiuko tarpinėje būsenoje!!!!
-
-	seatEnable();
-	keyOn();
+void beep() {
+	hornOn();
+	delay(10);
+	hornOff();
 }
 
+void beeep() {
+	hornOn();
+	delay(500);
+	hornOff();
+}
 
-void go() {
-	gasDisable();
-	directionOff();
+void hydraulicsOn() {
+	setSpeed(SPEED0);
+	directionBackwardOn();
 	parkingOn();
-
-	parkingOff();
-	directionForwardOn();
 	gasEnable();
-	setSpeed(SPEED1);
+	delay(1000);
+}
+
+void takeoverWhileOn() {
+	controlAllOff();
+	keyOn();
+	controlTakeover();
+	hydraulicsOn();
+	steeringEnable();
+	steeringToCenter();
+	mirgalkeOn();
+	beep();
 }
 
 void stop() {
 	gasDisable();
 	parkingOn();
 	directionOff();
+	setSpeed(SPEED0);
+	steeringDisable();
+	controlRelease();
 }
+
+uint8_t firstSteering = 0;
+
+void go() {
+	takeoverWhileOn();
+	setSpeed(SPEED0);
+	directionForwardOn();
+	gasEnable();
+	delay(500);
+	parkingOff();
+	firstSteering = 1;
+}
+
+
+void hydraulicsOff() {
+	gasDisable();	
+	directionOff();
+}
+
+
 
 #endif
