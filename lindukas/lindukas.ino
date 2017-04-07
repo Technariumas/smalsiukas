@@ -3,6 +3,7 @@
 #include "steering.h"
 #include "line_follower.h"
 #include "Bounce2.h"
+#include "gaz.h"
 
 Bounce button = Bounce();
 Bounce rangefinder = Bounce();
@@ -20,7 +21,6 @@ void setup() {
 
 	steeringInit();
 	steeringDisable();
-	brakeEmergencyEngage();
 }
 
 uint8_t isObstacleInRange() {

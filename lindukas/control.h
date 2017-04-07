@@ -2,6 +2,8 @@
 #define __CONTROL_H
 
 #include "pins.h"
+#include "gaz.h"
+
 void controlTakeover() {
 	digitalWrite(TAKEOVER, HIGH);
 }
@@ -18,38 +20,7 @@ void keyOff() {
 	digitalWrite(KEY_ENABLE, LOW);
 }
 
-void gasEnable() {
-	digitalWrite(GAZ_ENABLE, HIGH);
-}
 
-void gasDisable() {
-	digitalWrite(GAZ_ENABLE, LOW);
-}
-
-typedef enum {
-	SPEED0,
-	SPEED1,
-	SPEED2,
-	SPEED3
-} Speed_t;
-
-
-void setSpeed(Speed_t speed){
-	digitalWrite(GAZ_SPEED1, LOW);
-	digitalWrite(GAZ_SPEED2, LOW);
-	digitalWrite(GAZ_SPEED3, LOW);
-	switch(speed) {
-		case SPEED1:
-			digitalWrite(GAZ_SPEED1, HIGH);
-			break;
-		case SPEED2:
-			digitalWrite(GAZ_SPEED2, HIGH);
-			break;
-		case SPEED3:
-			digitalWrite(GAZ_SPEED3, HIGH);
-			break;
-	}
-}
 
 uint8_t control = 0;
 
