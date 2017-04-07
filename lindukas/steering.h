@@ -3,17 +3,12 @@
 
 #include "pins.h"
 
-#define MAX_SPEED 3000
-#define ACCELERATION 7000
-
-#define WHEEL_MID_POS 600
-#define MAX_BACKLASH 5000 
-
 /*
-perdavimas 72 prie 22
-int(1 / 1.8 * 2 * (72 / 22) * 1024)
+90° prie 68
+
+68/90 * 1024
 */
-#define STEPS_PER_DEGREE 3724
+#define STEPS_PER_DEGREE 774
 
 
 uint16_t backlash = 175;
@@ -91,7 +86,6 @@ void lindeSteerTo(uint16_t targetPosition) {
     
 }
 
-
 void steeringToCenter() {
   analogWrite(STEERING_PIN_GREY, center[0]);
   analogWrite(STEERING_PIN_YELLOW, center[1]);
@@ -99,14 +93,15 @@ void steeringToCenter() {
 
 void steeringInit() {
 	steeringToCenter();
+	delay(1);//kad PWM dac turetu laiko nusistoveti
 }
 
 /**
  * angle - degress/10 i.e. 90 degrees = 900
  */
 
-uint8_t degreesToPosition(int16_t angle) {
-	return 0;
+int16_t degreesToPosition(int16_t angle) {
+	return (int16_t)128 + (((uint32_t)angle * STEPS_PER_DEGREE) / 1024);
 }
 
 void steeringSetAngle(int16_t angle) {
