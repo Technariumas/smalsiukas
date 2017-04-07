@@ -1,7 +1,8 @@
 #ifndef __GAZ_H
 #define __GAZ_H
-#include "pins.h"
-#include "control.h"
+#include "lindukas.h"
+//#include "pins.h"
+//#include "control.h"
 
 #define GAZ_MIN 20
 #define GAZ_TRIG_LOW 85
