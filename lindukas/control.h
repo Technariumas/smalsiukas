@@ -2,7 +2,6 @@
 #define __CONTROL_H
 
 #include "pins.h"
-#include "gaz.h"
 
 void controlTakeover() {
 	digitalWrite(TAKEOVER, HIGH);
