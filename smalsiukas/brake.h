@@ -122,6 +122,7 @@ void brakeEmergencyEngage() {
 
 void brakeEmergencyRelease() {
 	actuate(DIRECTION_OUT);
+	magnetDisengage();
 }
 
 #endif

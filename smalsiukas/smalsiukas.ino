@@ -20,6 +20,7 @@ void setup() {
 
 	steeringInit();
 	steeringDisable();
+	brakeEmergencyRelease();
 }
 
 uint8_t isObstacleInRange() {
@@ -36,6 +37,7 @@ void followTheLine() {
 	switch (smalsiukasState) {
 		case STATE_STOP:
 			if(button.fell()) {
+				brakeEmergencyEngage();
 				go();
 				smalsiukasState = STATE_FOLLOWING;
 				beep();
@@ -101,6 +103,8 @@ void followTheLine() {
 
 			if(button.fell()) {
 				stop();
+				brakeEmergencyRelease();
+
 				smalsiukasState = STATE_STOP;
 			}			
 	
