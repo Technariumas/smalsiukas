@@ -3,14 +3,14 @@
 #include "steering.h"
 #include "line_follower.h"
 #include "Bounce2.h"
-#include "gaz.h"
 
 #include "Servo.h"
 
 Bounce button = Bounce();
 
-
 Servo speedServo;
+
+#include "gaz.h"
 
 void setup() {
 	Serial.begin(115200);
@@ -18,7 +18,7 @@ void setup() {
 	speedServo.attach(SERVO_PIN); 
 	
 	// center gaz pot
-	setSpeed(SPEED0);
+	gazDisable();
 	 
 	//button.attach(GAZ_SPEED3);
 	button.interval(100);

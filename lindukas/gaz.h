@@ -9,12 +9,12 @@
 #define GAZ_MAX 160
 #define GAZ_DELTA 20
 
-#define GAZ_DELAY = 200
+#define GAZ_DELAY 200
 
 void gazInit() {
-	myservo.write(GAZ_CENTER);
+	speedServo.write(GAZ_CENTER);
 	delay(GAZ_DELAY);
-	myservo.write(GAZ_TRIG_HIGH);
+	speedServo.write(GAZ_TRIG_HIGH);
 	gazOn();
 }
 
@@ -23,10 +23,11 @@ void gazInit() {
 //	gazOn();
 //}
 
-void gasDisable() {
-	myservo.write(GAZ_TRIG_HIGH);
+void gazDisable() {
+	speedServo.write(GAZ_TRIG_HIGH);
 	delay(GAZ_DELAY);
-	myservo.write(GAZ_CENTER);
+	gazOff();
+	speedServo.write(GAZ_CENTER);
 }
 
 typedef enum {
@@ -41,19 +42,19 @@ Speed_t _cSpeed;
 void setSpeed(Speed_t speed){
 switch speed {
 	case SPEED0:
-		myservo.write(GAZ_TRIG_HIGH);
+		speedServo.write(GAZ_TRIG_HIGH);
 		break;
 	case SPEED1:
-		myservo.write(GAZ_TRIG_HIGH+GAZ_DELTA);
+		speedServo.write(GAZ_TRIG_HIGH+GAZ_DELTA);
 		break;
 	case SPEED2:
-		myservo.write(GAZ_TRIG_HIGH+GAZ_DELTA+GAZ_DELTA);
+		speedServo.write(GAZ_TRIG_HIGH+GAZ_DELTA+GAZ_DELTA);
 		break;
 	case SPEED3:
-		myservo.write(GAZ_TRIG_HIGH+GAZ_DELTA+GAZ_DELTA+GAZ_DELTA);
+		speedServo.write(GAZ_TRIG_HIGH+GAZ_DELTA+GAZ_DELTA+GAZ_DELTA);
 		break;
 	case default:
-		myservo.write(GAZ_TRIG_HIGH);
+		speedServo.write(GAZ_TRIG_HIGH);
 		break;
 	}
 }
