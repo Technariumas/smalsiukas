@@ -2,9 +2,6 @@
 #define __CONTROL_H
 #include "Arduino.h"
 #include "pins.h"
-//#include "gaz.h"
-
-
 void gazOff(void);
 void gazOn(void);
 
