@@ -27,10 +27,11 @@ void setup() {
 	steeringInit();
 	controlTakeover();
 	delay(6000);
+	gazInit();
 }
 
 //koeficientas, kiek pasukti ratus esant kokiam nuokrypiui
-#define P 100
+#define P 4
 uint8_t nonCriticalSteerings = 0;
 uint8_t steerings = 0;
 uint32_t lineLastSeenTs = 0;
@@ -65,20 +66,21 @@ void followTheLine() {
 							} else {
 								setSpeed(SPEED2);
 								nonCriticalSteerings++;
-								if(nonCriticalSteerings > 0 && steerings > 35) {
-									stop();
-									delay(500);
-									go();
-									steerings = 0;
-									nonCriticalSteerings = 0;
-									lastLine = 0;
-									firstSteering = 1;
-									lineLastSeenTs = millis();
-								}
+								// if(nonCriticalSteerings > 0 && steerings > 35) {
+								// 	stop();
+								// 	delay(500);
+								// 	go();
+								// 	steerings = 0;
+								// 	nonCriticalSteerings = 0;
+								// 	lastLine = 0;
+								// 	firstSteering = 1;
+								// 	lineLastSeenTs = millis();
+								// }
 							}
-							int16_t steer = getErrorAngle(line) * -1 * P;
+							int16_t steer = getErrorAngle(line) * P;
 //							Serial.println(steer);
 							steeringSetAngle(steer);
+							steeringRunToPosition();
 						}
 						mirgalkeOff();
 					} else {
@@ -116,21 +118,6 @@ void followTheLine() {
 int8_t turnTo = 90;
 
 void loop() {
-	if(button.fell()) {
-		if(steeringIsMoveDone()) {
-			steeringSetAngle(turnTo);
-			if(Direction_CW == direction){
-				turnTo = -90;
-			} else {
-			 	turnTo = 90;
-			}
-		}
-	}
-	steeringRun();
-	button.update();
-}
-
-void loop2() {
 	followTheLine();
 
 	steeringRun();

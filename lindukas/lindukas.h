@@ -46,6 +46,7 @@ void stop() {
 //	parkingOn();
 //	directionOff();
 	setSpeed(SPEED0);
+	steeringToCenter();
 //	controlRelease();
 }
 

@@ -6,9 +6,9 @@
 /*
 90° prie 68
 
-68/90 * 1024
+75/90 * 1024
 */
-#define STEPS_PER_DEGREE 774
+#define STEPS_PER_DEGREE 773
 
 
 uint16_t backlash = 175;
@@ -27,7 +27,7 @@ uint8_t nextPositionScheduled = 0;
 #define STEERING_PIN_YELLOW_MIN_VALUE (20 - STEERING_PIN_YELLOW_OFFSET)
 #define STEERING_PIN_GREY_MIN_VALUE (20 - STEERING_PIN_GREY_OFFSET)
 
-#define TURN_PERIOD_MS 10
+#define TURN_PERIOD_MS 15
 
 typedef enum{
   Direction_CW,
@@ -119,9 +119,9 @@ void steeringRun() {
         curPos++;
         analogWrite(STEERING_PIN_GREY, curPos + STEERING_PIN_GREY_OFFSET);
         analogWrite(STEERING_PIN_YELLOW, curPos + STEERING_PIN_YELLOW_OFFSET);
-        Serial.print(curPos + STEERING_PIN_GREY_OFFSET);
-        Serial.print(" ");
-        Serial.println(curPos + STEERING_PIN_YELLOW_OFFSET);
+        // Serial.print(curPos + STEERING_PIN_GREY_OFFSET);
+        // Serial.print(" ");
+        // Serial.println(curPos + STEERING_PIN_YELLOW_OFFSET);
       } else {
         isTurning = 0;
       }
@@ -130,9 +130,9 @@ void steeringRun() {
         curPos--;
         analogWrite(STEERING_PIN_GREY, curPos + STEERING_PIN_GREY_OFFSET);
         analogWrite(STEERING_PIN_YELLOW, curPos + STEERING_PIN_YELLOW_OFFSET);
-        Serial.print(curPos + STEERING_PIN_GREY_OFFSET);
-        Serial.print(" ");
-        Serial.println(curPos + STEERING_PIN_YELLOW_OFFSET);
+        // Serial.print(curPos + STEERING_PIN_GREY_OFFSET);
+        // Serial.print(" ");
+        // Serial.println(curPos + STEERING_PIN_YELLOW_OFFSET);
       } else {
         isTurning = 0;        
       }

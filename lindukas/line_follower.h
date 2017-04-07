@@ -6,42 +6,42 @@
 uint8_t line;
 uint32_t lastReadTS = 0;
 
-#define LINE_READ_INTERVAL 50
+#define LINE_READ_INTERVAL 100
 #define READ_REQ_TIMEOUT 5
 #define LINE_NOT_DETECTED 128
 
 int16_t getErrorAngle(uint8_t line) {
 	switch(line) {
 		case 0b10000000:
-			return -66;
+			return -33;
 		case 0b11000000:
-			return -45;
+			return -30;
 		case 0b01000000:
 			return -20;
 		case 0b01100000:
 			return -18;
 		case 0b00100000:
-			return -11;
+			return -13;
 		case 0b00110000:
-			return -8;
+			return -11;
 		case 0b00010000:
-			return -3;
+			return -5;
 		case 0b00011000:
 			return 0;
 		case 0b00001000:
-			return 3;
+			return 5;
 		case 0b00001100:
-			return 8;
-		case 0b00000100:
 			return 11;
+		case 0b00000100:
+			return 13;
 		case 0b00000110:
 			return 18;
 		case 0b00000010:
 			return 20;
 		case 0b00000011:
-			return 45;
+			return 30;
 		case 0b00000001:
-			return 66;
+			return 33;
 	}
 	return LINE_NOT_DETECTED;
 }
