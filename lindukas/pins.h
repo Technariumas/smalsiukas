@@ -8,8 +8,8 @@
 //#define STEERING_STEP 				6
 //#define STEERING_ENABLE 			7
 
-#define STEERING_PIN_YELLOW 6
-#define STEERING_PIN_GREY 5
+#define STEERING_PIN_YELLOW 5
+#define STEERING_PIN_GREY 6
 
 #define BUTTON_START      4
 
@@ -34,13 +34,6 @@
 void pinsInit() {
 	pinMode(TAKEOVER 					, OUTPUT);
 	pinMode(RS458_DE_RD 				, OUTPUT);
-	//pinMode(STEERING_FAULT 				, INPUT);
-	//pinMode(STEERING_DIR 				, OUTPUT);
-	//pinMode(STEERING_STEP 				, OUTPUT);
-	//pinMode(STEERING_ENABLE 			, OUTPUT);
-	//pinMode(LINEAR_ACTUATOR_DIRECTION 	, OUTPUT);
-	//pinMode(LINEAR_ACTUATOR_ENABLE 		, OUTPUT);
-	//pinMode(MAGNET_ENGAGE 				, OUTPUT);
 	pinMode(SPI_LATCH 					, OUTPUT);
 	digitalWrite(SPI_LATCH, LOW);
 	pinMode(SPI_DATA 					, OUTPUT);
@@ -50,14 +43,6 @@ void pinsInit() {
 	pinMode(STEERING_PIN_GREY			, OUTPUT);
 	pinMode(SERVO_PIN					, OUTPUT);
 	pinMode(BUTTON_START				, INPUT_PULLUP);
-	
-	//pinMode(RANGEFINDER_WARNING 		, INPUT);
-	//pinMode(GAZ_SPEED1 					, OUTPUT);
-	//pinMode(GAZ_SPEED2 					, OUTPUT);
-	//pinMode(GAZ_SPEED3 					, INPUT_PULLUP);
-	//pinMode(GAZ_ENABLE 					, OUTPUT);
-	//pinMode(KEY_ENABLE 					, OUTPUT);
-
 }
 
 
