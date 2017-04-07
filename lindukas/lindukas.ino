@@ -61,9 +61,9 @@ void followTheLine() {
 			
 							if(isLineCritical(l)) {
 								nonCriticalSteerings = 0;
-								setSpeed(SPEED0);
-							} else {
 								setSpeed(SPEED1);
+							} else {
+								setSpeed(SPEED2);
 								nonCriticalSteerings++;
 								if(nonCriticalSteerings > 0 && steerings > 35) {
 									stop();

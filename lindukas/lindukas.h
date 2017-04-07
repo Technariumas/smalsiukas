@@ -43,20 +43,20 @@ void takeoverWhileOn() {
 }
 
 void stop() {
-	parkingOn();
-	directionOff();
+//	parkingOn();
+//	directionOff();
 	setSpeed(SPEED0);
-	controlRelease();
+//	controlRelease();
 }
 
 uint8_t firstSteering = 0;
 
 void go() {
-	takeoverWhileOn();
-	setSpeed(SPEED0);
-	directionForwardOn();
-	delay(500);
-	parkingOff();
+//	takeoverWhileOn();
+	setSpeed(SPEED1);
+//	directionForwardOn();
+//	delay(500);
+//	parkingOff();
 	firstSteering = 1;
 }
 
