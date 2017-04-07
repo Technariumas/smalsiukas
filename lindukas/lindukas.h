@@ -9,6 +9,7 @@
 #define SYNC 1
 #define ASYNC 0
 
+
 #define LINE_SEEN_TIMEOUT 1000
 
 typedef enum{
@@ -36,7 +37,7 @@ void hydraulicsOn() {
 	setSpeed(SPEED0);
 	directionBackwardOn();
 	parkingOn();
-	gasEnable();
+	gazEnable();
 	delay(1000);
 }
 
@@ -66,7 +67,7 @@ void go() {
 	takeoverWhileOn();
 	setSpeed(SPEED0);
 	directionForwardOn();
-	gasEnable();
+	gazEnable();
 	delay(500);
 	parkingOff();
 	firstSteering = 1;
@@ -74,7 +75,7 @@ void go() {
 
 
 void hydraulicsOff() {
-	gasDisable();	
+	gazDisable();	
 	directionOff();
 }
 

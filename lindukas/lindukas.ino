@@ -1,14 +1,14 @@
 #include "pins.h"
+#include "Servo.h"
 #include "lindukas.h"
 #include "steering.h"
 #include "line_follower.h"
 #include "Bounce2.h"
+#include "control.h"
 
-#include "Servo.h"
 
 Bounce button = Bounce();
 
-Servo speedServo;
 
 #include "gaz.h"
 

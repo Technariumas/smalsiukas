@@ -1,6 +1,7 @@
 #ifndef __GAZ_H
 #define __GAZ_H
 #include "pins.h"
+#include "control.h"
 
 #define GAZ_MIN 20
 #define GAZ_TRIG_LOW 85
@@ -10,6 +11,24 @@
 #define GAZ_DELTA 20
 
 #define GAZ_DELAY 200
+
+Servo speedServo;
+
+
+typedef enum {
+  SPEED0,
+  SPEED1,
+  SPEED2,
+  SPEED3
+} Speed_t;
+
+Speed_t _cSpeed;
+
+
+void gazDisable(void);
+void gazInit(void);
+void gazDisable(void);
+void setSpeed(Speed_t);
 
 void gazInit() {
 	speedServo.write(GAZ_CENTER);
@@ -30,17 +49,9 @@ void gazDisable() {
 	speedServo.write(GAZ_CENTER);
 }
 
-typedef enum {
-	SPEED0,
-	SPEED1,
-	SPEED2,
-	SPEED3
-} Speed_t;
-
-Speed_t _cSpeed;
 
 void setSpeed(Speed_t speed){
-switch speed {
+switch (speed) {
 	case SPEED0:
 		speedServo.write(GAZ_TRIG_HIGH);
 		break;
