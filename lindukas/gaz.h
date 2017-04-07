@@ -37,10 +37,10 @@ void gazInit() {
 	gazOn();
 }
 
-//void gasEnable() {
-//	myservo.write(GAZ_TRIG_HIGH);
-//	gazOn();
-//}
+void gasEnable() {
+	myservo.write(GAZ_TRIG_HIGH);
+	gazOn();
+}
 
 void gazDisable() {
 	speedServo.write(GAZ_TRIG_HIGH);
