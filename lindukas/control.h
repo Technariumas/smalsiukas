@@ -106,12 +106,12 @@ void mirgalkeOff() {
 }
 
 void gazOn() {
-	control = control | CTRL_AUX;
+	control = control | CTRL_GAZ;
 	sendControl();
 }
 
 void gazOff() {
-	control = control & ~CTRL_AUX;
+	control = control & ~CTRL_GAZ;
 	sendControl();
 }
 

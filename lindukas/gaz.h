@@ -10,7 +10,7 @@
 
 #define GAZ_DELAY = 200
 
-	
+
 void gasEnable() {
 }
 
@@ -24,8 +24,15 @@ typedef enum {
 	SPEED3
 } Speed_t;
 
+Speed_t _cSpeed;
 
 void setSpeed(Speed_t speed){
+	if (speed == SPEED0) {
+		if (_cSpeed != speed) {
+			
+			}
+	
+	}
 }
 
 
