@@ -3,11 +3,9 @@
 #include "pins.h"
 
 void gasEnable() {
-	digitalWrite(GAZ_ENABLE, HIGH);
 }
 
 void gasDisable() {
-	digitalWrite(GAZ_ENABLE, LOW);
 }
 
 typedef enum {
