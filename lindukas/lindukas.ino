@@ -6,25 +6,15 @@
 #include "gaz.h"
 
 Bounce button = Bounce();
-Bounce rangefinder = Bounce();
-Bounce obstacle = Bounce();
 
 void setup() {
 	Serial.begin(115200);
 	pinsInit();
 	button.attach(GAZ_SPEED3);
 	button.interval(100);
-	rangefinder.attach(RANGEFINDER_WARNING);
-	rangefinder.interval(50);
-	obstacle.attach(RANGEFINDER_WARNING);
-	obstacle.interval(500);
 
 	steeringInit();
 	steeringDisable();
-}
-
-uint8_t isObstacleInRange() {
-	return rangefinder.rose();
 }
 
 //koeficientas, kiek pasukti ratus esant kokiam nuokrypiui
@@ -105,36 +95,23 @@ void followTheLine() {
 				smalsiukasState = STATE_STOP;
 			}			
 	
-			if(obstacle.rose()) {
-				parkingOn();
-				lightsOn();
-				auxOn();
-				beeep();
-				delay(2000);
-				stop();
-				while(1 == obstacle.read()) {
-					obstacle.update();
-				}
-				lightsOff();
-				auxOff();
-				go();
-			}
-			
 			break;
 		case STATE_ERROR:
 			break;
 	}
 }
 
-
 void loop() {
-	followTheLine();
-	if(isObstacleInRange()) {
-		beep();
+	if(isLineAvailable()) {
+		uint8_t l = getLine();
+		Serial.println(l, BIN);
+		delay(500);
 	}
+}
+
+void loop2() {
+	followTheLine();
 
 	steeringRun();
-	rangefinder.update();
 	button.update();
-	obstacle.update();
 }

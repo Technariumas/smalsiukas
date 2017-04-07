@@ -13,11 +13,9 @@ void controlRelease() {
 }
 
 void keyOn() {
-	digitalWrite(KEY_ENABLE, HIGH);
 }
 
 void keyOff() {
-	digitalWrite(KEY_ENABLE, LOW);
 }
 
 
