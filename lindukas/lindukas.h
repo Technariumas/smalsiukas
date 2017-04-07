@@ -9,6 +9,7 @@
 #define SYNC 1
 #define ASYNC 0
 
+
 #define LINE_SEEN_TIMEOUT 1000
 
 typedef enum{
