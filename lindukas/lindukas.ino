@@ -18,7 +18,7 @@ void setup() {
 	speedServo.attach(SERVO_PIN); 
 	
 	// center gaz pot
-	setSpeed(SPEED0)
+	setSpeed(SPEED0);
 	 
 	//button.attach(GAZ_SPEED3);
 	button.interval(100);
