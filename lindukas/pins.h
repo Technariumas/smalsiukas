@@ -8,8 +8,8 @@
 //#define STEERING_STEP 				6
 //#define STEERING_ENABLE 			7
 
-#define STEERING_PIN_YELLOW 6
-#define STEERING_PIN_GREY 5
+#define STEERING_PIN_YELLOW 5
+#define STEERING_PIN_GREY 6
 
 #define BUTTON_START      4
 
