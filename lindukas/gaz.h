@@ -6,10 +6,10 @@
 
 #define GAZ_MIN 20
 #define GAZ_TRIG_LOW 85
-#define GAZ_CENTER 110
-#define GAZ_TRIG_HIGH 129
+#define GAZ_CENTER 93
+#define GAZ_TRIG_HIGH GAZ_CENTER + 21 
 #define GAZ_MAX 160
-#define GAZ_DELTA 20
+#define GAZ_DELTA 10 
 
 #define GAZ_DELAY 200
 
@@ -32,9 +32,8 @@ void gazDisable(void);
 void setSpeed(Speed_t);
 
 void gazInit() {
-	speedServo.write(GAZ_CENTER);
-	delay(GAZ_DELAY);
 	speedServo.write(GAZ_TRIG_HIGH);
+	delay(GAZ_DELAY);
 	gazOn();
 }
 
