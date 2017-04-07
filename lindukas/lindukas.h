@@ -45,7 +45,6 @@ void takeoverWhileOn() {
 	keyOn();
 	controlTakeover();
 	hydraulicsOn();
-	steeringEnable();
 	steeringToCenter();
 	mirgalkeOn();
 	beep();
@@ -56,7 +55,6 @@ void stop() {
 	parkingOn();
 	directionOff();
 	setSpeed(SPEED0);
-	steeringDisable();
 	controlRelease();
 }
 

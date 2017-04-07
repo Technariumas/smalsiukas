@@ -49,7 +49,7 @@ void pinsInit() {
 	pinMode(STEERING_PIN_YELLOW  		, OUTPUT);
 	pinMode(STEERING_PIN_GREY			, OUTPUT);
 	pinMode(SERVO_PIN					, OUTPUT);
-	pinMode(BUTTON_START				, INPUT);
+	pinMode(BUTTON_START				, INPUT_PULLUP);
 	
 	//pinMode(RANGEFINDER_WARNING 		, INPUT);
 	//pinMode(GAZ_SPEED1 					, OUTPUT);

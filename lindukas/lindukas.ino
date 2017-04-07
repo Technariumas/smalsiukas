@@ -14,17 +14,17 @@ Servo speedServo;
 
 void setup() {
 	Serial.begin(115200);
+	Serial.println("Hello");
 	pinsInit();
 	speedServo.attach(SERVO_PIN); 
 	
 	// center gaz pot
-	setSpeed(SPEED0)
+	setSpeed(SPEED0);
 	 
-	//button.attach(GAZ_SPEED3);
+	button.attach(BUTTON_START);
 	button.interval(100);
 
 	steeringInit();
-	steeringDisable();
 }
 
 //koeficientas, kiek pasukti ratus esant kokiam nuokrypiui
@@ -112,11 +112,10 @@ void followTheLine() {
 }
 
 void loop() {
-	if(isLineAvailable()) {
-		uint8_t l = getLine();
-		Serial.println(l, BIN);
-		delay(500);
+	if(button.fell()) {
+		Serial.println("CLICK");
 	}
+	button.update();
 }
 
 void loop2() {
