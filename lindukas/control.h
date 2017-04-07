@@ -1,8 +1,12 @@
 #ifndef __CONTROL_H
 #define __CONTROL_H
-
+#include "Arduino.h"
 #include "pins.h"
-#include "gaz.h"
+//#include "gaz.h"
+
+
+void gazOff(void);
+void gazOn(void);
 
 void controlTakeover() {
 	digitalWrite(TAKEOVER, HIGH);
