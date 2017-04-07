@@ -32,26 +32,16 @@ void beeep() {
 	hornOff();
 }
 
-void hydraulicsOn() {
-	setSpeed(SPEED0);
-	directionBackwardOn();
-	parkingOn();
-	gasEnable();
-	delay(1000);
-}
-
 void takeoverWhileOn() {
 	controlAllOff();
 	keyOn();
 	controlTakeover();
-	hydraulicsOn();
 	steeringToCenter();
 	mirgalkeOn();
 	beep();
 }
 
 void stop() {
-	gasDisable();
 	parkingOn();
 	directionOff();
 	setSpeed(SPEED0);
@@ -64,18 +54,10 @@ void go() {
 	takeoverWhileOn();
 	setSpeed(SPEED0);
 	directionForwardOn();
-	gasEnable();
 	delay(500);
 	parkingOff();
 	firstSteering = 1;
 }
-
-
-void hydraulicsOff() {
-	gasDisable();	
-	directionOff();
-}
-
 
 
 #endif
