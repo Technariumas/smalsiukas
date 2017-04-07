@@ -11,7 +11,11 @@
 #define STEERING_PIN_YELLOW 6
 #define STEERING_PIN_GREY 5
 
+#define BUTTON_START      4
+
 //#define LINEAR_ACTUATOR_DIRECTION 	9
+
+#define SERVO_PIN 9
 //#define LINEAR_ACTUATOR_ENABLE 		8
 #define SPI_LATCH 					10
 #define SPI_DATA 					11
@@ -44,6 +48,8 @@ void pinsInit() {
 	
 	pinMode(STEERING_PIN_YELLOW  		, OUTPUT);
 	pinMode(STEERING_PIN_GREY			, OUTPUT);
+	pinMode(SERVO_PIN					, OUTPUT);
+	pinMode(BUTTON_START				, OUTPUT);
 	
 	//pinMode(RANGEFINDER_WARNING 		, INPUT);
 	//pinMode(GAZ_SPEED1 					, OUTPUT);

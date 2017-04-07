@@ -29,7 +29,7 @@ uint8_t control = 0;
 #define CTRL_HORN		0b00000100
 #define CTRL_DIR_BACK	0b00001000
 #define CTRL_DIR_FWD	0b00010000
-#define CTRL_AUX		0b00100000
+#define CTRL_GAZ		0b00100000
 #define CTRL_MIRGALKE	0b01000000
 #define CTRL_LIGHTS		0b10000000
 
@@ -107,12 +107,12 @@ void mirgalkeOff() {
 	sendControl();
 }
 
-void auxOn() {
+void gazOn() {
 	control = control | CTRL_AUX;
 	sendControl();
 }
 
-void auxOff() {
+void gazOff() {
 	control = control & ~CTRL_AUX;
 	sendControl();
 }
@@ -120,15 +120,15 @@ void auxOff() {
 void controlAllOff() {
 	parkingOn();
 
-	auxOff();
+	gazOff();
 	mirgalkeOff();
 	hornOff();
 	lightsOff();
 	directionOff();
 	seatDisable();
 
-	gasDisable();
-	setSpeed(SPEED0);
+	//gasDisable();
+	//setSpeed(SPEED0);
 	keyOff();
 }
 

@@ -1,31 +1,41 @@
 #include "pins.h"
-#include "smalsiukas.h"
+#include "lindukas.h"
 #include "steering.h"
 #include "line_follower.h"
 #include "Bounce2.h"
 #include "gaz.h"
 
+#include "Servo.h"
+
 Bounce button = Bounce();
 Bounce rangefinder = Bounce();
 Bounce obstacle = Bounce();
 
+
+Servo speedServo;
+
 void setup() {
 	Serial.begin(115200);
 	pinsInit();
-	button.attach(GAZ_SPEED3);
+	speedServo.attach(SERVO_PIN); 
+	
+	// center gaz pot
+	setSpeed(SPEED0)
+	 
+	//button.attach(GAZ_SPEED3);
 	button.interval(100);
-	rangefinder.attach(RANGEFINDER_WARNING);
-	rangefinder.interval(50);
-	obstacle.attach(RANGEFINDER_WARNING);
-	obstacle.interval(500);
+	//rangefinder.attach(RANGEFINDER_WARNING);
+//	rangefinder.interval(50);
+//	obstacle.attach(RANGEFINDER_WARNING);
+//	obstacle.interval(500);
 
 	steeringInit();
 	steeringDisable();
 }
 
-uint8_t isObstacleInRange() {
-	return rangefinder.rose();
-}
+//uint8_t isObstacleInRange() {
+//	return rangefinder.rose();
+//}
 
 //koeficientas, kiek pasukti ratus esant kokiam nuokrypiui
 #define P 100
