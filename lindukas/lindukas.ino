@@ -25,6 +25,8 @@ void setup() {
 	button.interval(100);
 
 	steeringInit();
+	controlTakeover();
+	delay(6000);
 }
 
 //koeficientas, kiek pasukti ratus esant kokiam nuokrypiui
@@ -111,10 +113,20 @@ void followTheLine() {
 	}
 }
 
+int8_t turnTo = 90;
+
 void loop() {
 	if(button.fell()) {
-		Serial.println("CLICK");
+		if(steeringIsMoveDone()) {
+			steeringSetAngle(turnTo);
+			if(Direction_CW == direction){
+				turnTo = -90;
+			} else {
+			 	turnTo = 90;
+			}
+		}
 	}
+	steeringRun();
 	button.update();
 }
 
