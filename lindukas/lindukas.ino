@@ -1,5 +1,5 @@
 #include "pins.h"
-#include "Servo.h"
+//#include "Servo.h"
 #include "lindukas.h"
 #include "steering.h"
 #include "line_follower.h"
@@ -10,13 +10,15 @@
 Bounce button = Bounce();
 
 
-#include "gaz.h"
+//#include "gaz.h"
 
 void setup() {
 	Serial.begin(115200);
 	Serial.println("Hello");
 	pinsInit();
+ #ifdef __GAZ_H
 	speedServo.attach(SERVO_PIN); 
+  #endif
 	
 	// center gaz pot
 	gazDisable();
