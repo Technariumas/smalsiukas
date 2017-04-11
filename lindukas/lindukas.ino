@@ -1,5 +1,12 @@
+
+#define USE_GAZ_PWM 1
+
 #include "pins.h"
-//#include "Servo.h"
+
+#ifndef USE_GAZ_PWM 
+  #include "Servo.h"
+#endif
+
 #include "lindukas.h"
 #include "steering.h"
 #include "line_follower.h"
