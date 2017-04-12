@@ -32,6 +32,11 @@ uint8_t control = 0;
 #define CTRL_MIRGALKE	0b01000000
 #define CTRL_LIGHTS		0b10000000
 
+#define LED_STAGE_1  0b00001000
+#define LED_STAGE_2  0b00010000
+#define LED_STAGE_3     0b00000001
+#define LED_STAGE_4  0b00000010
+
 void sendControl() {
 	digitalWrite(SPI_LATCH, LOW);
  	shiftOut(SPI_DATA, SPI_CLK, MSBFIRST, control);  

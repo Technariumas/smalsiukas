@@ -22,8 +22,8 @@ void lindeThrottleToPosition(void);
 
 // Linde has speed recuction on cornering, so possibly higher values can be used
 
-#define GAZ_DELTA 18
-
+//#define GAZ_DELTA 18
+#define GAZ_DELTA 40
 //#define GAZ_DELTA 20 // reduced due to random stop
 // speed was not an issue, the static charge is
 
