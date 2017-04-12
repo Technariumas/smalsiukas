@@ -808,4 +808,6 @@ Connection ~ 2100 10700
 Wire Wire Line
 	2100 11000 2700 11000
 Connection ~ 2700 11000
+Text Notes -1000 11450 0    60   ~ 0
+FIX: 4 pin connector was used. sensors are powered from +5V_DIRTY as they consume 150mA each.
 $EndSCHEMATC

@@ -285,7 +285,7 @@ F 4 "?" H 11750 5300 60  0001 C CNN "PartNo"
 F 5 "?" H 11750 5300 60  0001 C CNN "Manufacturer"
 F 6 "1510765" H 11750 5300 60  0001 C CNN "Distributor"
 	1    11750 5300
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 Wire Wire Line
 	11550 4800 11550 4700
