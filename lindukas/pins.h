@@ -16,6 +16,8 @@
 //#define LINEAR_ACTUATOR_DIRECTION 	9
 
 #define SERVO_PIN 9
+#define GAZ_PWM_PIN 3
+
 //#define LINEAR_ACTUATOR_ENABLE 		8
 #define SPI_LATCH 					10
 #define SPI_DATA 					11
@@ -41,7 +43,8 @@ void pinsInit() {
 	
 	pinMode(STEERING_PIN_YELLOW  		, OUTPUT);
 	pinMode(STEERING_PIN_GREY			, OUTPUT);
-	pinMode(SERVO_PIN					, OUTPUT);
+//	pinMode(SERVO_PIN					, OUTPUT);
+  pinMode(GAZ_PWM_PIN          , OUTPUT);
 	pinMode(BUTTON_START				, INPUT_PULLUP);
 }
 

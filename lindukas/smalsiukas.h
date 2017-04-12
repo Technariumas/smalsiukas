@@ -2,7 +2,7 @@
 #define __SMALSIUKAS_H
 
 #include "control.h"
-#include "gaz.h"
+//#include "gaz.h"
 #include "steering.h"
 #include "line_follower.h"
 

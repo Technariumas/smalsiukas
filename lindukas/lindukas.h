@@ -2,12 +2,14 @@
 #define __SMALSIUKAS_H
 
 #include "control.h"
-#include "gaz.h"
+//#include "gaz.h"
+#include "gaz_pwm.h"
 #include "steering.h"
 #include "line_follower.h"
 
 #define SYNC 1
 #define ASYNC 0
+
 
 
 #define LINE_SEEN_TIMEOUT 1000
