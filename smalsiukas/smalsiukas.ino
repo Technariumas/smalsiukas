@@ -41,6 +41,7 @@ void followTheLine() {
 				go();
 				smalsiukasState = STATE_FOLLOWING;
 				beep();
+				lineLastSeenTs = millis();
 			}
 			break;
 		case STATE_FOLLOWING:
@@ -81,14 +82,7 @@ void followTheLine() {
 						}
 						mirgalkeOff();
 					} else {
-						if(0 == l && millis() - lineLastSeenTs > LINE_SEEN_TIMEOUT) {
-							parkingOn();
-							beeep();
-							delay(500);
-							beeep();
-							stop();
-							smalsiukasState = STATE_STOP;
-						}
+
 					}
 				} else if(isRequestTimeout()){
 					Serial.print('T');
@@ -121,6 +115,15 @@ void followTheLine() {
 				lightsOff();
 				auxOff();
 				go();
+			}
+
+			if(millis() - lineLastSeenTs > LINE_SEEN_TIMEOUT) {
+				parkingOn();
+				beeep();
+				delay(500);
+				beeep();
+				stop();
+				smalsiukasState = STATE_STOP;
 			}
 			
 			break;
