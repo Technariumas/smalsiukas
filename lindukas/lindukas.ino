@@ -18,6 +18,7 @@ Bounce button = Bounce();
 
 
 //#include "gaz.h"
+uint32_t lineLastSeenTs = 0;
 
 void setup() {
   sendControl();
@@ -71,6 +72,7 @@ void setup() {
     
     go();
     button.update();
+    lineLastSeenTs = millis();
     
 }
 
@@ -78,7 +80,6 @@ void setup() {
 #define P 4
 uint8_t nonCriticalSteerings = 0;
 uint8_t steerings = 0;
-uint32_t lineLastSeenTs = 0;
 
 void followTheLine() {
   switch (smalsiukasState) {
@@ -87,6 +88,7 @@ void followTheLine() {
         go();
         smalsiukasState = STATE_FOLLOWING;
         beep();
+        lineLastSeenTs = millis();
       }
       break;
     case STATE_FOLLOWING:
@@ -128,14 +130,6 @@ void followTheLine() {
             }
             mirgalkeOff();
           } else {
-            if (0 == l && millis() - lineLastSeenTs > LINE_SEEN_TIMEOUT) {
-              parkingOn();
-              beeep();
-              delay(500);
-              beeep();
-              stop();
-              smalsiukasState = STATE_STOP;
-            }
           }
         } else if (isRequestTimeout()) {
           Serial.print('T');
@@ -152,6 +146,15 @@ void followTheLine() {
         stop();
         smalsiukasState = STATE_STOP;
       }
+
+		if (millis() - lineLastSeenTs > LINE_SEEN_TIMEOUT) {
+		  parkingOn();
+		  beeep();
+		  delay(500);
+		  beeep();
+		  stop();
+		  smalsiukasState = STATE_STOP;
+		}
 
       break;
     case STATE_ERROR:
